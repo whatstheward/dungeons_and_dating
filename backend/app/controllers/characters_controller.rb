@@ -12,7 +12,16 @@ class CharactersController < ApplicationController
 
     def create 
         @character = Character.new(character_params)
-        render json: @character, status: :ok
+        if @character.save
+            render json: @character, status: :ok
+        else
+            render json: @character.errors.full_messages
+        end
+    end
+
+    def destroy
+        @character = Character.find(params[:id])
+        @character.destroy
     end
 
     private

@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_170555) do
+ActiveRecord::Schema.define(version: 2019_05_06_184902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_genders", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "gender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_genders_on_character_id"
+    t.index ["gender_id"], name: "index_character_genders_on_gender_id"
+  end
+
+  create_table "character_orientations", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "orientation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_orientations_on_character_id"
+    t.index ["orientation_id"], name: "index_character_orientations_on_orientation_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -25,4 +43,20 @@ ActiveRecord::Schema.define(version: 2019_05_06_170555) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "genders", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orientations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "character_genders", "characters"
+  add_foreign_key "character_genders", "genders"
+  add_foreign_key "character_orientations", "characters"
+  add_foreign_key "character_orientations", "orientations"
 end
