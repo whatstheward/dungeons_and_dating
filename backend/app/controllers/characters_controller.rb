@@ -7,10 +7,12 @@ class CharactersController < ApplicationController
 
     def show
         @character = Character.find(params[:id])
+        render json: @character, status: :ok
     end
 
     def create 
         @character = Character.new(character_params)
+        render json: @character, status: :ok
     end
 
     private
