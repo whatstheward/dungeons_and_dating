@@ -6,64 +6,122 @@ document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
 
 fetchCharacters()
-
+document.querySelector('#createCharacter').addEventListener('click', loadCharacterForm)
 
 })
 
-function fetchCharacters(){
-    fetch(BASE_URL + 'characters')
-    .then(res => res.json())
-    .then(characters => characters.forEach(character => renderCharacter(character)))
+
+function loadCharacterForm(){
+    clearMainContainer()
+    clearHeroBanner()
+    renderCharacterForm()
 }
 
-function fetchCharactersGenders(character){
-    fetch(CHAR_URL + `${character.id}/genders`)
-    .then(res => res.json())
-    .then(genders => renderGenders(genders))
+function clearMainContainer(){
+    let main = document.querySelector('#main-container')
+    while(main.firstChild)
+        main.removeChild(main.firstChild)
 }
 
-function renderGenders(genders){
-    console.log('charcter genders',genders)
+function clearHeroBanner(){
+    let hero = document.querySelector('body > section.hero')
+    while(hero.firstChild)
+        hero.removeChild(hero.firstChild)
 }
 
-function buildCharacterModal(character){
-    console.log('character', character)
-    fetchCharactersGenders(character)
-}
+function renderCharacterForm(){
+    let main = document.querySelector('#main-container')
 
-function renderCharacter(character){
-    let div = document.querySelector('#char-columns')
-    buildCharacterModal(character)
-    let card = document.createElement('div')
-    card.className = 'card column is-narrow'
+    let creatorCard = document.createElement('div')
+    creatorCard.className = 'card'
+    creatorCard.id = 'creatorCard'
+
+    let form = document.createElement('form')
+    form.id = "characterCreationForm"
+
+    let nameField = document.createElement('div')
+    nameField.className = "field"
+
+    let name = document.createElement('label')
+    name.className = "label"
+    name.innerText = "Character Name: "
+
+    let nameControl = document.createElement('div')
+    nameControl.className = "control"
+
+    let nameInput = document.createElement('input')
+    nameInput.className = "input"
+    nameInput.type = "text"
+
+    nameControl.appendChild(nameInput)
+    name.appendChild(nameControl)
+    nameField.appendChild(name)
+    form.appendChild(nameField)
+
+    let raceField = document.createElement('div')
+    raceField.className = "field"
+
+    let race = document.createElement('label')
+    race.className = "label"
+    race.innerText = "Character Race: "
+
+    let raceControl = document.createElement('div')
+    raceControl.className = "control"
+
+    let raceInput = document.createElement('div')
+    raceInput.className = "select"
+
+    let raceSelect = document.createElement('select')
+    raceSelect.innerHTML =  '<option>Dragonborn</option>' +
+                            '<option>Dwarf</option>' +
+                            '<option>Elf</option>' +
+                            '<option>Gnome</option>' +
+                            '<option>Half Elf</option>' +
+                            '<option>Half Orc</option>' +
+                            '<option>Halfling</option>' +
+                            '<option>Human</option>' +
+                            '<option>Tiefling</option>' 
+
+    raceInput.appendChild(raceSelect)
+    raceControl.appendChild(raceInput)
+    race.appendChild(raceControl)
+    raceField.appendChild(race)
+    form.appendChild(raceField)
+
+    let classField = document.createElement('div')
+    classField.className = "field"
+
+    let character_class = document.createElement('label')
+    character_class.className = "label"
+    character_class.innerText = "Character Class: "
+
+    let classControl = document.createElement('div')
+    classControl.className = "control"
+
+    let classInput = document.createElement('div')
+    classInput.className = "select"
+
+    let classSelect = document.createElement('select')
+    classSelect.innerHTML =  '<option>Barbarian</option>' +
+                            '<option>Bard</option>' +
+                            '<option>Cleric</option>' +
+                            '<option>Druid</option>' +
+                            '<option>Fighter</option>' +
+                            '<option>Monk</option>' +
+                            '<option>Paladin</option>' +
+                            '<option>Ranger</option>' +
+                            '<option>Rogue</option>' +
+                            '<option>Sorcerer</option>' +
+                            '<option>Wizard</option>' 
+
+    classInput.appendChild(classSelect)
+    classControl.appendChild(classInput)
+    character_class.appendChild(classControl)
+    classField.appendChild(character_class)
+    form.appendChild(classField)
+
+
+    creatorCard.appendChild(form)
+    main.appendChild(creatorCard)
     
-    let img = document.createElement('img')
-    img.src = character.img
-    img.id = "premadeAvatar"
-    
-    let contentDiv = document.createElement('div')
-    contentDiv.className = 'column'
-    
-    let name = document.createElement('h2')
-    name.className = "title"
-    name.innerText = character.name
-
-
-    let btn = document.createElement('button')
-    btn.className = "button is-success"
-    btn.innerText = "See Attributes"
-    btn.dataset.id = character.id
-    
-    btn.addEventListener('click', showCharacterInfo)
-
-    contentDiv.appendChild(name)
-    contentDiv.appendChild(btn)
-    card.appendChild(img)
-    card.appendChild(contentDiv)
-    div.appendChild(card)
-
-}
-
-function showCharacterInfo(e){
-    console.log("event target", e.target)
 }
