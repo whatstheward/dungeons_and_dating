@@ -10,6 +10,28 @@
     position: fixed;
 }
 
+.hero{
+    text-align: center;
+}
+
+#characterCreationForm{
+    display:flex;
+    justify-content: center;
+}
+#characterCreationForm input{
+    width: 20em;
+}
+#creatorCard{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+#characterCreationForm > div{
+    margin-left:1em;
+}
+
 #premadeAvatar{
 
     max-width: 10em;
@@ -21,11 +43,37 @@
 
     width: 7em;
     height: 7em;
+    box-shadow: -5px  5px 5px  grey;
+    border-right: solid;
+    border-right-color: grey;
+    border-top: solid;
+    border-top-color: grey;
 }
 
-#main-container{
-    width: 75%;
+.modal .modal-content{
+    display:flex;
+    justify-content:center;
+}
 
+.modal .modal-content .card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+
+#main-container{
+    width: 80%; 
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center; 
+}
+
+#char-columns{
+    width: 100%;
+    display: flex;
+    justify-content: center;    /* Change this */
+    flex-wrap: wrap;
 }
 
 .card{
@@ -33,6 +81,8 @@
     width: 20em;
 
     text-align: center;
+    border-radius: 5%;
+    padding: 1em;
 }
 
 #char-columns{
@@ -43,9 +93,23 @@
     justify-content: center;
     justify-items: center;
     grid: auto-flow dense/ repeat(3, 1fr);
-}
 
+.button{
+    margin:.5em;
+
+}
 .section{
+
     justify-content: center;
 
 }
+
+    display: flex;
+    justify-content: flex-end; 
+}
+
+body{
+    align-content: center;
+}
+
+
