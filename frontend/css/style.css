@@ -11,16 +11,28 @@
 }
 
 #premadeAvatar{
-    max-width: 10em;
+    width: 7em;
+    height: 7em;
+}
+
+#main-container{
+    width: 75%;
+    
 }
 
 .card{
-    margin: 1em;
-    max-width: 20em;
+    margin: .5em;
+    width: 20em;
     text-align: center;
 }
 
 #char-columns{
     display: grid;
-    grid: auto-flow dense/ 1fr 1fr 1fr
+    justify-content: center;
+    justify-items: center;
+    grid: auto-flow dense/ repeat(3, 1fr);
+}
+
+.section{
+    justify-content: center;
 }
