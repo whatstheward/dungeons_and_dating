@@ -1,0 +1,2 @@
+class QuestEvent < ApplicationRecord
+end
