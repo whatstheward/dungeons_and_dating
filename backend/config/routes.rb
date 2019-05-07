@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :characters, only: [:index, :show, :create, :update, :destroy] do
     resources :genders, :orientations, only: [:index, :create, :update, :destroy]
   end
+    resources :quests, only: [:index]
+    resources :dates, only: [:index]
+    resources :abilities, only: [:index]
+  end
 
-  resources :quests, only: [:show]
-
-end
+  

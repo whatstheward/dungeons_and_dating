@@ -1,6 +1,6 @@
 class CreateQuestEvents < ActiveRecord::Migration[5.2]
   def change
-    create_table :quests_events do |t|
+    create_table :quest_events do |t|
       t.string :title
       t.string :situation
       t.string :challenge_type

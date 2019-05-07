@@ -1,4 +1,5 @@
 const BASE_URL = `http://localhost:3000/`
+
 const CHAR_URL = `http://localhost:3000/characters/`
 
 
@@ -15,6 +16,7 @@ function loadCharacterForm(){
     clearMainContainer()
     clearHeroBanner()
     renderCharacterForm()
+
 }
 
 function clearMainContainer(){
@@ -29,18 +31,23 @@ function clearHeroBanner(){
         hero.removeChild(hero.firstChild)
 }
 
+
 function renderCharacterForm(){
     let main = document.querySelector('#main-container')
+
 
     let creatorCard = document.createElement('div')
     creatorCard.className = 'card'
     creatorCard.id = 'creatorCard'
+
+
 
     let form = document.createElement('form')
     form.id = "characterCreationForm"
 
     let nameField = document.createElement('div')
     nameField.className = "field"
+
 
     let name = document.createElement('label')
     name.className = "label"
@@ -64,6 +71,7 @@ function renderCharacterForm(){
     let race = document.createElement('label')
     race.className = "label"
     race.innerText = "Character Race: "
+
 
     let raceControl = document.createElement('div')
     raceControl.className = "control"
