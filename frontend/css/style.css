@@ -9,3 +9,18 @@
     width: auto;
     position: fixed;
 }
+
+#premadeAvatar{
+    max-width: 10em;
+}
+
+.card{
+    margin: 1em;
+    max-width: 20em;
+    text-align: center;
+}
+
+#char-columns{
+    display: grid;
+    grid: auto-flow dense/ 1fr 1fr 1fr
+}

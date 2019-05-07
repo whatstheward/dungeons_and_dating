@@ -15,29 +15,61 @@ function fetchCharacters(){
 }
 
 function renderCharacter(character){
-    let div = document.querySelector('#main-container')
-
+    let div = document.querySelector('#char-columns')
+    
     let card = document.createElement('div')
-    card.classList  += "card"
-    card.style = "display:flex;"
-
-    let cardBody = document.createElement('div')
-    cardBody.className = 'card-body'
-    cardBody.style = "display:inline-flex;"
-
+    card.className = 'card'
+    card.style = "padding: 3em;"
+    
+    
+    let columns = document.createElement('div')
+    columns.className = "columns is-vcentered"
+    
+    let imageDiv = document.createElement('div')
+    imageDiv.className = 'card-content'
+    
     let figure = document.createElement('figure')
-    figure.className = "image is-128x128"
-
+    figure.className = "media"
+    figure.style = "justify-content: center;"
+    
     let img = document.createElement('img')
     img.src = character.img
+    img.id = "premadeAvatar"
+    
+    let contentDiv = document.createElement('div')
+    contentDiv.className = 'column'
+    
+    let name = document.createElement('h2')
+    name.className = "title"
+    name.innerText = character.name
+
+    
+    let bio = document.createElement('p')
+    bio.className = "card-content"
+    bio.innerText = character.bio
+
+    let btn = document.createElement('button')
+    btn.className = "button is-success"
+    btn.innerText = "See Attributes"
+    btn.dataset.id = character.id
+    
+    btn.addEventListener('click', showCharacterInfo)
+
+    card.appendChild(columns)
     figure.appendChild(img)
-
-    let charName = document.createElement('h5')
-    charName.classList += "card-title"
-    charName.innerText = character.name
-
-    card.appendChild(figure)
-    cardBody.appendChild(charName)
-    card.appendChild(cardBody)
+    imageDiv.appendChild(figure)
+    contentDiv.appendChild(name)
+    contentDiv.appendChild(btn)
+    contentDiv.appendChild(bio)
+    card.appendChild(imageDiv)
+    card.appendChild(contentDiv)
     div.appendChild(card)
+
+}
+
+function showCharacterInfo(e){
+    let id = e.target.dataset.id
+    fetch(BASE_URL +`characters/${id}`)
+    .then(res => res.json())
+    .then(character => console.log(character.genders))
 }
