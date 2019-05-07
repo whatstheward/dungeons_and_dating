@@ -1,4 +1,6 @@
 const BASE_URL = `http://localhost:3000/`
+const CHAR_GENDERS_URL = `http://localhost:3000/characters/${character.id}/genders`
+const CHAR_ORIENTATIONS_URL = `http://localhost:3000/characters/${character.id}/orientations`
 
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
@@ -12,6 +14,10 @@ function fetchCharacters(){
     fetch(BASE_URL + 'characters')
     .then(res => res.json())
     .then(characters => characters.forEach(character => renderCharacter(character)))
+}
+
+function fetchCharactersGenders(character){
+    fetch(BASE_URL + )
 }
 
 function renderCharacter(character){
