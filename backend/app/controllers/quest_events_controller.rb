@@ -1,0 +1,2 @@
+class QuestEventsController < ApplicationController
+end

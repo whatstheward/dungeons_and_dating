@@ -83,3 +83,5 @@ production:
   database: dungeons_and_dating_production
   username: dungeons_and_dating
   password: <%= ENV['DUNGEONS_AND_DATING_DATABASE_PASSWORD'] %>
+
+host: localhost
