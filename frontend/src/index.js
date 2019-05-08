@@ -120,6 +120,38 @@ function renderCharacterForm(){
     classField.appendChild(character_class)
     form.appendChild(classField)
 
+    let genderField = document.createElement('div')
+    genderField.className = "field"
+
+    let character_gender = document.createElement('label')
+    character_gender.className = "label"
+    character_gender.innerText = "Character Gender: "
+
+    let genderControl = document.createElement('div')
+    genderControl.className = "control"
+
+    let genderInput = document.createElement('div')
+    genderInput.className = "select"
+
+    let genderSelect = document.createElement('select')
+    genderSelect.innerHTML =  '<option>Barbarian</option>' +
+                            '<option>Bard</option>' +
+                            '<option>Cleric</option>' +
+                            '<option>Druid</option>' +
+                            '<option>Fighter</option>' +
+                            '<option>Monk</option>' +
+                            '<option>Paladin</option>' +
+                            '<option>Ranger</option>' +
+                            '<option>Rogue</option>' +
+                            '<option>Sorcerer</option>' +
+                            '<option>Wizard</option>' 
+
+    genderInput.appendChild(genderSelect)
+    genderControl.appendChild(genderInput)
+    character_gender.appendChild(genderControl)
+    genderField.appendChild(character_gender)
+    form.appendChild(genderField)
+
 
     creatorCard.appendChild(form)
     main.appendChild(creatorCard)
