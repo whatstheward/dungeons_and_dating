@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     resources :abilities, only: [:index]
     resources :genders, only: [:index]
     resources :npcs, only: [:index, :show, :create, :update, :destroy]
-    resources :orientations, only [:index]
+    resources :orientations, only: [:index]
   end
