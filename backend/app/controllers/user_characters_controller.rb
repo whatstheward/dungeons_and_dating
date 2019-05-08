@@ -1,17 +1,17 @@
-class CharactersController < ApplicationController
+class UserCharactersController < ApplicationController
 
     def index
-        @characters = Character.all
+        @characters = UserCharacter.all
         render json: @characters, status: :ok
     end
 
     def show
-        @character = Character.find(params[:id])
+        @character = UserCharacter.find(params[:id])
         render json: @character, status: :ok
     end
 
-    def create 
-        @character = Character.new(character_params)
+    def create
+        @character = UserCharacter.new(character_params)
         if @character.save
             render json: @character, status: :ok
         else
@@ -20,13 +20,13 @@ class CharactersController < ApplicationController
     end
 
     def destroy
-        @character = Character.find(params[:id])
+        @character = UserCharacter.find(params[:id])
         @character.destroy
     end
 
     private
 
     def character_params
-        params.require(:character).permit(:name, :race, :character_class, :bio, :img)
+        params.require(:UserCharacter).permit(:username, :race, :character_class, :img)
     end
 end
