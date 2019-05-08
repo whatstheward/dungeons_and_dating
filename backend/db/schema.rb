@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_184902) do
+ActiveRecord::Schema.define(version: 2019_05_08_000606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,20 @@ ActiveRecord::Schema.define(version: 2019_05_06_184902) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "quest_events", force: :cascade do |t|
+    t.string "title"
+    t.string "scenario"
+    t.string "challenge_type"
+    t.integer "challenge_rating"
+  end
+
+  create_table "quests", force: :cascade do |t|
+    t.string "title"
+    t.integer "quest_event1"
+    t.integer "quest_event2"
+    t.integer "quest_event3"
   end
 
   add_foreign_key "character_genders", "characters"
