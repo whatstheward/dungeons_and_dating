@@ -15,7 +15,7 @@ loadCharacterForm()
 
 
 function loadCharacterForm(){
-    let hero = document.querySelector('body > section.hero')
+    let hero = document.querySelector("body > section.hero")
     let h1 = document.createElement('h1')
     h1.className = "title is-1"
     h1.innerText ="Create and Character to begin your romantic adventure!"

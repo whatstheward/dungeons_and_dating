@@ -79,6 +79,7 @@ function toggleModalOff(e){
 function renderCharacter(character){
     buildCharacterModal(character)
     let div = document.querySelector('#char-columns')
+    
     let card = document.createElement('div')
     card.className = 'card'
     
