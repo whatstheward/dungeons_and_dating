@@ -6,7 +6,7 @@ class GendersController < ApplicationController
     end
    
     def user_character_genders
-        @character = UserCharacter.find(params[:character_id])
+        @character = UserCharacter.find(params[:user_character_id])
         render json: @character.genders, status: :ok
     end
 

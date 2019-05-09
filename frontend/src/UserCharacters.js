@@ -197,41 +197,6 @@ function buildOrientationOptions(orientations){
                             })
 }
 
-function postGendersAndOrientations(id, genders, orientations){
-    genders.forEach(gender => createCharacterGenders(id, gender))
-    orientations.forEach(orientation => createCharacterOrientations(id, orientation))
-}
-
-function createCharacterGenders(id, gender){
-    fetch(BASE_URL + `user_characters/${id}/genders`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            user_character_gender: {
-            user_character_id: id,
-            gender_id: parseInt(gender)
-                            }   
-            })
-        })
-}
-
-function createCharacterOrientations(id, orientation){
-    fetch(BASE_URL + `user_characters/${id}/orientations`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            user_character_orientation: {
-            user_character_id: id,
-            orientation_id: parseInt(orientation)
-                            }   
-            })
-        })
-}
-
 function handleForm(e){
     e.preventDefault()
     let genders = []
