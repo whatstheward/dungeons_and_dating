@@ -1,11 +1,13 @@
-class Character < ApplicationRecord
+class UserCharacter < ApplicationRecord
     has_many :character_genders
     has_many :genders, through: :character_genders
     has_many :character_orientations
     has_many :orientations, through: :character_orientations
-    has_many :dates
-    has_many :date_events, through: :dates
-    has_many :character_quests
-    has_many :quests, through: :character_quests 
+    has_many :character_dates
+    has_many :abilities
+    has_many :relationships
+    has_many :npcs, through: :relationships
+
+
 
 end

@@ -1,4 +1,5 @@
 class Orientation < ApplicationRecord
-  has_many :orientations
-  has_many :characters, through: :orientations
+  has_many :character_orientations
+  has_many :characters, through: :character_orientations
+  has_many :npcs
 end
