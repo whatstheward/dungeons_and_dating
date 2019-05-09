@@ -25,7 +25,7 @@ function buildCharacterModal(character){
     fetchCharactersGenders(character)
     fetchCharacterOrientations(character)
     let id = character.id
-    let container = document.querySelector('body > section')
+    let container = document.querySelector('#main-section')
     let modal = document.createElement('div')
     modal.classList += "modal"
     modal.id = 'modal' + id
@@ -79,6 +79,7 @@ function toggleModalOff(e){
 function renderCharacter(character){
     buildCharacterModal(character)
     let div = document.querySelector('#char-columns')
+    
     let card = document.createElement('div')
     card.className = 'card'
     

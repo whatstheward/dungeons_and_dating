@@ -15,34 +15,36 @@
 }
 
 #characterCreationForm{
-    display:flex;
-    justify-content: center;
-}
-#characterCreationForm input{
-    width: 20em;
+    width: 80%;
+    display: flex;
+    justify-content: center;    /* Change this */
+    flex-wrap: wrap;
 }
 #creatorCard{
-    display:flex;
-    flex-wrap: wrap;
+    width: 80%;
+    height: 100em;
+    display: flex;
     justify-content: flex-start;
-    width: 100%;
+    flex-wrap: wrap;
 }
 
-#characterCreationForm > div{
-    margin-left:1em;
+#characterCreationForm >div{
+    margin: 1em;
+}
+
+#characterCreationForm < label{
+    height: 1em;
+    margin:1em;
 }
 
 #premadeAvatar{
-
     max-width: 10em;
 }
 
 .card{
     margin: 1em;
     max-width: 20em;
-
     width: 7em;
-    height: 7em;
     box-shadow: -5px  5px 5px  grey;
     border-right: solid;
     border-right-color: grey;
@@ -79,7 +81,6 @@
 .card{
     margin: .5em;
     width: 20em;
-
     text-align: center;
     border-radius: 5%;
     padding: 1em;
@@ -89,19 +90,63 @@
     display: grid;
     justify-items: center;
     grid: auto-flow dense/ repeat(3, 1fr);
+}
 
 .button{
     margin:.5em;
 }
-.section{
-
-    justify-content: center;
+#main-section{
     display: flex;
     justify-content: flex-end; 
+    height: 100%;
 }
+
+#genderDiv{
+    width: 40%;
+    height: auto;
+}
+
+#genderDiv > div > div { 
+    display: inline-block;
+    justify-content: center;
+    padding: .25em;
+}
+
+#genderDiv > div > div > input{
+    padding: 1em;
+}
+
+#gender {
+    margin: .5em;
+}
+
+#genderDiv > div > div > label{
+    padding: .1em;
+}
+
+#orientationDiv{
+    width: 40%;
+    height: auto;
+}
+
+#orientationDiv > div > div { 
+    display: inline-block;
+    justify-content: center;
+    padding: .25em;
+}
+
+#orientationDiv > div > div > input{
+    padding: .1em;
+}
+
+#orientationDiv > div > div > label{
+    padding: .1em;
+}
+
 
 body{
     align-content: center;
 }
+
 
 

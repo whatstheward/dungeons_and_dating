@@ -15,3 +15,4 @@ function fetchCharacterOrientations(character){
     .then(res => res.json())
     .then(orientations => orientations.forEach(orientation => renderOrientations(character, orientation)))
 }
+
