@@ -22,7 +22,6 @@ function loadCharacterForm(){
     h1.innerText ="Create and Character to begin your romantic adventure!"
     hero.appendChild(h1)
     renderCharacterForm()
-
 }
 function clearNavBar(){
     let bar = document.querySelector('#top-bar')

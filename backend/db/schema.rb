@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_140405) do
+ActiveRecord::Schema.define(version: 2019_05_09_112710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "abilities", force: :cascade do |t|
-    t.bigint "user_character_id"
-    t.integer "strength"
-    t.integer "dexterity"
-    t.integer "constitution"
-    t.integer "intelligence"
-    t.integer "wisdom"
-    t.integer "charisma"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_character_id"], name: "index_abilities_on_user_character_id"
-  end
 
   create_table "character_dates", force: :cascade do |t|
     t.bigint "relationships_id"
@@ -58,8 +45,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_140405) do
     t.string "name"
     t.string "race"
     t.string "character_class"
-    t.string "img"
     t.string "bio"
+    t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +92,24 @@ ActiveRecord::Schema.define(version: 2019_05_08_140405) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "abilities", "user_characters"
+  create_table "user_genders", force: :cascade do |t|
+    t.bigint "user_character_id"
+    t.bigint "gender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gender_id"], name: "index_user_genders_on_gender_id"
+    t.index ["user_character_id"], name: "index_user_genders_on_user_character_id"
+  end
+
+  create_table "user_orientations", force: :cascade do |t|
+    t.bigint "user_character_id"
+    t.bigint "orientation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orientation_id"], name: "index_user_orientations_on_orientation_id"
+    t.index ["user_character_id"], name: "index_user_orientations_on_user_character_id"
+  end
+
   add_foreign_key "character_dates", "relationships", column: "relationships_id"
   add_foreign_key "character_genders", "characters"
   add_foreign_key "character_genders", "genders"
@@ -113,4 +117,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_140405) do
   add_foreign_key "character_orientations", "orientations"
   add_foreign_key "relationships", "characters"
   add_foreign_key "relationships", "user_characters"
+  add_foreign_key "user_genders", "genders"
+  add_foreign_key "user_genders", "user_characters"
+  add_foreign_key "user_orientations", "orientations"
+  add_foreign_key "user_orientations", "user_characters"
 end

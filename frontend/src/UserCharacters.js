@@ -203,7 +203,7 @@ function postGendersAndOrientations(id, genders, orientations){
 }
 
 function createCharacterGenders(id, gender){
-    fetch(BASE_URL + 'user_character_genders', {
+    fetch(BASE_URL + `user_characters/${id}/genders`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -218,7 +218,7 @@ function createCharacterGenders(id, gender){
 }
 
 function createCharacterOrientations(id, orientation){
-    fetch(BASE_URL + 'user_character_orientations', {
+    fetch(BASE_URL + `user_characters/${id}/orientations`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -256,7 +256,8 @@ function handleForm(e){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            character: {
+            user_character: {
+            username: username,
             name: characterName,
             race: race,
             character_class: characterClass,
