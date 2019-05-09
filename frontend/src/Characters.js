@@ -25,7 +25,7 @@ function buildCharacterModal(character){
     fetchCharactersGenders(character)
     fetchCharacterOrientations(character)
     let id = character.id
-    let container = document.querySelector('body > section')
+    let container = document.querySelector('#main-section')
     let modal = document.createElement('div')
     modal.classList += "modal"
     modal.id = 'modal' + id
