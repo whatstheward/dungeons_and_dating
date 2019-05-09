@@ -1,7 +1,12 @@
 class GendersController < ApplicationController
 
-    def index
+    def character_genders
         @character = Character.find(params[:character_id])
+        render json: @character.genders, status: :ok
+    end
+   
+    def user_character_genders
+        @character = UserCharacter.find(params[:character_id])
         render json: @character.genders, status: :ok
     end
 
