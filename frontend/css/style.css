@@ -15,7 +15,6 @@
 }
 
 #characterCreationForm{
-    display:flex;
     width: 80%;
     display: flex;
     justify-content: center;    /* Change this */
