@@ -1,4 +1,4 @@
 class CharacterOrientation < ApplicationRecord
-  belongs_to :user_character
+  belongs_to :character
   belongs_to :orientation
 end
