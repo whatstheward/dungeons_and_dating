@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
     resources :character_dates, only: [:index]
     resources :abilities, only: [:index]
+<<<<<<< HEAD
     resources :genders, only: [:index]
     resources :characters, only: [:index, :show, :create, :update, :destroy]
     resources :orientations, only: [:index]
@@ -17,4 +18,9 @@ Rails.application.routes.draw do
 
     get '/allgenders', to: 'genders#allgenders', controller: :genders
     get '/allorientations', to: 'orientations#allorientations', controller: :orientations
+=======
+
+    resources :npcs, only: [:index, :show, :create, :update, :destroy]
+    resources :orientations, only: [:index]
+>>>>>>> 6bf33d237ceb193d5ef2005113a49f8294a8bdde
   end
