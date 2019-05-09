@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_000154) do
+ActiveRecord::Schema.define(version: 2019_05_08_000606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,23 +43,6 @@ ActiveRecord::Schema.define(version: 2019_05_08_000154) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "date_events", force: :cascade do |t|
-    t.string "title"
-    t.string "situation"
-    t.string "challenge_type"
-    t.integer "challenge_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dates", force: :cascade do |t|
-    t.bigint "date_events_id"
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["date_events_id"], name: "index_dates_on_date_events_id"
-  end
-
   create_table "genders", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -72,27 +55,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_000154) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "quest_events", force: :cascade do |t|
-    t.string "title"
-    t.string "situation"
-    t.string "challenge_type"
-    t.integer "challenge_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "quests", force: :cascade do |t|
-    t.bigint "quest_events_id"
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quest_events_id"], name: "index_quests_on_quest_events_id"
-  end
-
   add_foreign_key "character_genders", "characters"
   add_foreign_key "character_genders", "genders"
   add_foreign_key "character_orientations", "characters"
   add_foreign_key "character_orientations", "orientations"
-  add_foreign_key "dates", "date_events", column: "date_events_id"
-  add_foreign_key "quests", "quest_events", column: "quest_events_id"
 end
