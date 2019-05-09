@@ -55,11 +55,3 @@ ActiveRecord::Schema.define(version: 2019_05_08_000606) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-  add_foreign_key "character_genders", "characters"
-  add_foreign_key "character_genders", "genders"
-  add_foreign_key "character_orientations", "characters"
-  add_foreign_key "character_orientations", "orientations"
-end
-=======
->>>>>>> maddie
