@@ -11,6 +11,16 @@
     margin: 1em;
 }
 
+#date-card{
+    width: 80%;
+}
+
+#date-card img{
+    width: 10em;
+    height: 10em;
+    margin: 1em;
+}
+
 
 .menu{
     width: 10em;

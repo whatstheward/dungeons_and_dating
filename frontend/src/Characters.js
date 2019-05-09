@@ -118,7 +118,9 @@ function renderCharacter(character){
 
 function goOnDate(e){
     let id = e.target.dataset.id
-    fetchCharacter(id)
     clearMainContainer()
-    buildDate()
+    clearHeroBanner()
+    fetchCharacterForDate(id)
+    fetchDateEvents()
 }
+

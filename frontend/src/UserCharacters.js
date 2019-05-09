@@ -1,6 +1,6 @@
 function renderCharacterForm(){
 
-    fetchAllOrientations()
+
 
     let main = document.querySelector('#char-columns')
 
@@ -209,6 +209,7 @@ function handleForm(e){
     let getOrientations = function(){checkedOrientations.forEach(box => orientations.push([box.dataset.id]))}
     getOrientations()
 
+
     let username = form.querySelector('#username').value
     let characterName = form.querySelector('#characterName').value
     let race = form.querySelector('#race').value
@@ -231,7 +232,9 @@ function handleForm(e){
     })
     .then(res => res.json())
     .then(character => {let id = character.id 
+                        USER = character
                         postGendersAndOrientations(id, genders, orientations)
+                        renderUserCharacter(character)
                         })
     
     clearMainContainer()
@@ -243,11 +246,14 @@ function handleForm(e){
 function fetchUser(id){
     fetch(`http://localhost:3000/user_characters/${id}`)
     .then(res=>res.json())
-    .then(character => renderUserCharacter(character))
+    .then(character => { USER = character
+                        renderUserCharacter(character)})
 }
 
 function renderUserCharacter(character){
     clearNavBar()
+    fetchUserGenders(character)
+    fetchUserOrientations(character)
     let bar = document.querySelector('body > div.nav-left.nav-menu.menu')
     bar.style ="display: flex;"
     let img = document.querySelector('#navbar-avatar')
@@ -268,4 +274,53 @@ function renderUserCharacter(character){
 
 
 
+}
+
+function postGendersAndOrientations(id, genders, orientations){
+    genders.forEach(gender => createCharacterGenders(id, gender))
+    orientations.forEach(orientation => createCharacterOrientations(id, orientation))
+}
+
+function createCharacterGenders(id, gender){
+
+    fetch(`http://localhost:3000/user_character_genders`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_gender: {
+            user_character_id: id,
+            gender_id: parseInt(gender)
+                            }   
+            })
+        })
+}
+
+function createCharacterOrientations(id, orientation){
+    fetch(BASE_URL + `user_character_orientations`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_character_orientation: {
+            user_character_id: id,
+            orientation_id: parseInt(orientation)
+                            }   
+            })
+        })
+}
+
+function renderUserOrientations(orientation){
+    let orientations = document.querySelector('#char-sexuality')
+    let orientationLine = document.createElement('li')
+    orientationLine.innerText = orientation.name
+    orientations.appendChild(orientationLine)
+}
+function renderUserGenders(gender){
+    let genders = document.querySelector('#char-genders')
+    let genderLine = document.createElement('li')
+    genderLine.innerText = gender.name
+    genders.appendChild(genderLine)
 }

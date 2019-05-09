@@ -5,12 +5,15 @@ const USER_CHAR_URL = `http://localhost:3000/user_characters/`
 
 const GENDERS = []
 const ORIENTATIONS = []
+const DATE_EVENTS = []
+let USER = null
 
 
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
 
 loadCharacterForm()
+fetchDateEvents()
 
 })
 
@@ -75,4 +78,3 @@ function buildOrientationOptions(orientations){
                                 selection.appendChild(label)
                             })
 }
-

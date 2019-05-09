@@ -10,13 +10,13 @@ function fetchCharacters(){
 }
 
 function fetchCharactersGenders(character){
-    fetch(CHAR_URL + `${character.id}/genders`)
+    fetch(CHAR_URL + `${character.id}/character_genders`)
     .then(res => res.json())
     .then(genders => genders.forEach(gender=>renderGenders(character, gender)))
 }
 
 function fetchCharacterOrientations(character){
-    fetch(CHAR_URL + `${character.id}/orientations`)
+    fetch(CHAR_URL + `${character.id}/character_orientations`)
     .then(res => res.json())
     .then(orientations => orientations.forEach(orientation => renderOrientations(character, orientation)))
 }
@@ -32,10 +32,29 @@ function fetchAllOrientations(){
     .then(orientations => buildOrientationOptions(orientations))
 }
 
-function fetchCharacter(id){
+function fetchCharacterForDate(id){
     fetch(BASE_URL + `characters/${id}`)
     .then(res => res.json())
-    .then(character => console.log(character))
+    .then(character =>  getRandomDate(DATE_EVENTS, USER, character))
 }
 
+function fetchUserGenders(character){
+    fetch(USER_CHAR_URL + `${character.id}/user_character_genders`)
+    .then(res => res.json())
+    .then(genders => genders.forEach(gender => renderUserGenders(gender))) 
+}
+
+function fetchUserOrientations(character){
+    fetch(USER_CHAR_URL + `${character.id}/user_character_orientations`)
+    .then(res => res.json())
+    // .then(orientations => console.log(orientations))
+    .then(orientations => orientations.forEach(orientation => renderUserOrientations(orientation)))
+    
+}
+
+function fetchDateEvents(){
+    fetch(`http://localhost:3000/date_events`)
+    .then(res => res.json())
+    .then(dateEvents => dateEvents.forEach(dateEvent => DATE_EVENTS.push(dateEvent)))
+}
 
