@@ -11,7 +11,7 @@ class UserCharactersController < ApplicationController
     end
 
     def create
-        @character = UserCharacter.new(character_params)
+        @character = UserCharacter.new(user_character_params)
         if @character.save
             render json: @character, status: :ok
         else
@@ -26,7 +26,7 @@ class UserCharactersController < ApplicationController
 
     private
 
-    def character_params
-        params.require(:UserCharacter).permit(:username, :race, :character_class, :img)
+    def user_character_params
+        params.require(:user_character).permit(:username, :name, :race, :character_class, :img)
     end
 end

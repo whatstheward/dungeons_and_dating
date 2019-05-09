@@ -12,6 +12,5 @@ class CharacterGendersController < ApplicationController
 
     def character_gender_params
         params.require(:character_gender).permit(:character_id, :gender_id)
-        
     end
 end

@@ -6,7 +6,7 @@ class UserCharacter < ApplicationRecord
     has_many :character_dates
     has_many :abilities
     has_many :relationships
-    has_many :npcs, through: :relationships
+    has_many :characters, through: :relationships
 
 
 

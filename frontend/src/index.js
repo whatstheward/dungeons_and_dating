@@ -1,6 +1,7 @@
 const BASE_URL = `http://localhost:3000/`
 
 const CHAR_URL = `http://localhost:3000/characters/`
+const USER_CHAR_URL = `http://localhost:3000/user_characters/`
 
 const GENDERS = []
 const ORIENTATIONS = []
@@ -23,7 +24,12 @@ function loadCharacterForm(){
     renderCharacterForm()
 
 }
-
+function clearNavBar(){
+    let bar = document.querySelector('#top-bar')
+    while(bar.firstChild){
+        bar.removeChild(bar.firstChild)
+    }
+}
 function clearMainContainer(){
     let main = document.querySelector('#char-columns')
     while(main.firstChild)
@@ -71,63 +77,20 @@ function buildOrientationOptions(orientations){
                             })
 }
 
-
-function handleForm(e){
-    e.preventDefault()
-    let genders = []
-    let orientations = []
-    let form = e.target.parentElement
-    let checkedGenders= document.querySelectorAll('input[name="gender"]:checked')
-    let checkedOrientations= document.querySelectorAll('input[name="orientation"]:checked')
-    let getGenders = function(){checkedGenders.forEach(box => genders.push([box.dataset.id]))}
-    getGenders()
-    let getOrientations = function(){checkedOrientations.forEach(box => orientations.push([box.dataset.id]))}
-    getOrientations()
-
-    let username = form.querySelector('#username').value
-    let characterName = form.querySelector('#characterName').value
-    let race = form.querySelector('#race').value
-    let characterClass = form.querySelector('#characterClass').value
-    let img = form.querySelector('#avatar').value
-
-    fetch(CHAR_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            character: {
-            name: characterName,
-            race: race,
-            character_class: characterClass,
-            img: img}
-        })
-    })
-    .then(res => res.json())
-    .then(character => {let id = character.id 
-                        postGendersAndOrientations(id, genders, orientations)
-                        })
-    
-    clearMainContainer()
-    clearHeroBanner()
-    fetchCharacters()
-
-}
-
 function postGendersAndOrientations(id, genders, orientations){
     genders.forEach(gender => createCharacterGenders(id, gender))
     orientations.forEach(orientation => createCharacterOrientations(id, orientation))
 }
 
 function createCharacterGenders(id, gender){
-    fetch(BASE_URL + 'character_genders', {
+    fetch(BASE_URL + 'user_character_genders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            character_gender: {
-            character_id: id,
+            user_character_gender: {
+            user_character_id: id,
             gender_id: parseInt(gender)
                             }   
             })
@@ -135,14 +98,14 @@ function createCharacterGenders(id, gender){
 }
 
 function createCharacterOrientations(id, orientation){
-    fetch(BASE_URL + 'character_orientations', {
+    fetch(BASE_URL + 'user_character_orientations', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            character_orientation: {
-            character_id: id,
+            user_character_orientation: {
+            user_character_id: id,
             orientation_id: parseInt(orientation)
                             }   
             })

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     </head>
     <body>
-        <div class="divbar">
+        <div class="bar is-flex" id="top-bar">
             <h1 class="title">Welcome to Dungeons & Dating!</h1>
         </div>
                 <div class="nav-left nav-menu menu" style="display:none;">
@@ -17,12 +17,14 @@
                     <p class="panel heading">
                         Character Info
                     </p>
-                    <img src="" alt="">
+                    <br>
+                    <img src="" alt="" id="navbar-avatar">
                     <ul class="menu-list">
                         <li><strong>Name:</strong><span id="char-name"></span></li>
                         <li><strong>Class: </strong><span id="char-class"></span></li>
                         <li><strong>Race:</strong><span id="char-race"></span></li>
-                        <li><strong>Bio:</strong><span id="char-bio"></span></li>
+                        <li><strong>Gender(s):</strong><span id="char-genders"></span></li>
+                        <li><strong>Sexuality:</strong><span id="char-sexuality"></span></li>
                     </ul>
                 </div>
                 <section class="hero">
@@ -40,6 +42,7 @@
             </div>
         </section>
 
+        <script src='src/UserCharacters.js'></script>
         <script src='src/Characters.js'></script>
         <script src='src/api.js'></script>
         <script src='src/index.js'></script>

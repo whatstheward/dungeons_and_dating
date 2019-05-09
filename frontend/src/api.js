@@ -37,3 +37,5 @@ function fetchCharacter(id){
     .then(res => res.json())
     .then(character => console.log(character))
 }
+
+

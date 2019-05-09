@@ -1,4 +1,4 @@
-class Npc < ApplicationRecord
+class Character < ApplicationRecord
   has_many :character_genders
   has_many :genders, through: :character_genders
   has_many :character_orientations

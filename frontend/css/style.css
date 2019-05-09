@@ -4,10 +4,25 @@
     margin: .5em;
     border-width: 1px;
 }
+
+#navbar-avatar{
+    width: 7em;
+    height: 7em;
+    margin: 1em;
+}
+
+
 .menu{
-    height: 100%;
-    width: auto;
+    width: 10em;
+    margin-top: 10em;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
     position: fixed;
+}
+
+body > div.nav-left.nav-menu.menu > ul{
+    margin-left: 1em;
 }
 
 .hero{
