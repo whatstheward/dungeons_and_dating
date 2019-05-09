@@ -2,25 +2,30 @@ const BASE_URL = `http://localhost:3000/`
 
 const CHAR_URL = `http://localhost:3000/characters/`
 
+const GENDERS = []
+const ORIENTATIONS = []
+
 
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
 
-fetchCharacters()
-document.querySelector('#createCharacter').addEventListener('click', loadCharacterForm)
+loadCharacterForm()
 
 })
 
 
 function loadCharacterForm(){
-    clearMainContainer()
-    clearHeroBanner()
+    let hero = document.querySelector("body > section.hero")
+    let h1 = document.createElement('h1')
+    h1.className = "title is-1"
+    h1.innerText ="Create and Character to begin your romantic adventure!"
+    hero.appendChild(h1)
     renderCharacterForm()
 
 }
 
 function clearMainContainer(){
-    let main = document.querySelector('#main-container')
+    let main = document.querySelector('#char-columns')
     while(main.firstChild)
         main.removeChild(main.firstChild)
 }
@@ -32,104 +37,114 @@ function clearHeroBanner(){
 }
 
 
-function renderCharacterForm(){
-    let main = document.querySelector('#main-container')
-
-
-    let creatorCard = document.createElement('div')
-    creatorCard.className = 'card'
-    creatorCard.id = 'creatorCard'
 
 
 
-    let form = document.createElement('form')
-    form.id = "characterCreationForm"
 
-    let nameField = document.createElement('div')
-    nameField.className = "field"
+function buildGenderOptions(genders){
+    let selection = document.querySelector('.select-gender')
+    genders.forEach(gender => {let genderOpt = document.createElement('input')
+                                genderOpt.name = "gender"
+                                let label = document.createElement('label')
+                                label.htmlFor = gender.name
+                                label.innerText = gender.name 
+                                genderOpt.type = "checkbox"
+                                genderOpt.value = gender.name
+                                genderOpt.dataset.id = gender.id
+                                selection.appendChild(genderOpt)
+                                selection.appendChild(label)
+                            })
+}
 
-
-    let name = document.createElement('label')
-    name.className = "label"
-    name.innerText = "Character Name: "
-
-    let nameControl = document.createElement('div')
-    nameControl.className = "control"
-
-    let nameInput = document.createElement('input')
-    nameInput.className = "input"
-    nameInput.type = "text"
-
-    nameControl.appendChild(nameInput)
-    name.appendChild(nameControl)
-    nameField.appendChild(name)
-    form.appendChild(nameField)
-
-    let raceField = document.createElement('div')
-    raceField.className = "field"
-
-    let race = document.createElement('label')
-    race.className = "label"
-    race.innerText = "Character Race: "
-
-
-    let raceControl = document.createElement('div')
-    raceControl.className = "control"
-
-    let raceInput = document.createElement('div')
-    raceInput.className = "select"
-
-    let raceSelect = document.createElement('select')
-    raceSelect.innerHTML =  '<option>Dragonborn</option>' +
-                            '<option>Dwarf</option>' +
-                            '<option>Elf</option>' +
-                            '<option>Gnome</option>' +
-                            '<option>Half Elf</option>' +
-                            '<option>Half Orc</option>' +
-                            '<option>Halfling</option>' +
-                            '<option>Human</option>' +
-                            '<option>Tiefling</option>' 
-
-    raceInput.appendChild(raceSelect)
-    raceControl.appendChild(raceInput)
-    race.appendChild(raceControl)
-    raceField.appendChild(race)
-    form.appendChild(raceField)
-
-    let classField = document.createElement('div')
-    classField.className = "field"
-
-    let character_class = document.createElement('label')
-    character_class.className = "label"
-    character_class.innerText = "Character Class: "
-
-    let classControl = document.createElement('div')
-    classControl.className = "control"
-
-    let classInput = document.createElement('div')
-    classInput.className = "select"
-
-    let classSelect = document.createElement('select')
-    classSelect.innerHTML =  '<option>Barbarian</option>' +
-                            '<option>Bard</option>' +
-                            '<option>Cleric</option>' +
-                            '<option>Druid</option>' +
-                            '<option>Fighter</option>' +
-                            '<option>Monk</option>' +
-                            '<option>Paladin</option>' +
-                            '<option>Ranger</option>' +
-                            '<option>Rogue</option>' +
-                            '<option>Sorcerer</option>' +
-                            '<option>Wizard</option>' 
-
-    classInput.appendChild(classSelect)
-    classControl.appendChild(classInput)
-    character_class.appendChild(classControl)
-    classField.appendChild(character_class)
-    form.appendChild(classField)
+function buildOrientationOptions(orientations){
+    let selection = document.querySelector('.select-orientation')
+    orientations.forEach(orientation => {let orientationOpt = document.createElement('input')
+                                orientationOpt.name = "orientation"
+                                let label = document.createElement('label')
+                                label.htmlFor = orientation.name
+                                label.innerText = orientation.name 
+                                orientationOpt.type = "checkbox"
+                                orientationOpt.value = orientation.name
+                                orientationOpt.dataset.id = orientation.id
+                                selection.appendChild(orientationOpt)
+                                selection.appendChild(label)
+                            })
+}
 
 
-    creatorCard.appendChild(form)
-    main.appendChild(creatorCard)
+function handleForm(e){
+    e.preventDefault()
+    let genders = []
+    let orientations = []
+    let form = e.target.parentElement
+    let checkedGenders= document.querySelectorAll('input[name="gender"]:checked')
+    let checkedOrientations= document.querySelectorAll('input[name="orientation"]:checked')
+    let getGenders = function(){checkedGenders.forEach(box => genders.push([box.dataset.id]))}
+    getGenders()
+    let getOrientations = function(){checkedOrientations.forEach(box => orientations.push([box.dataset.id]))}
+    getOrientations()
+
+    let username = form.querySelector('#username').value
+    let characterName = form.querySelector('#characterName').value
+    let race = form.querySelector('#race').value
+    let characterClass = form.querySelector('#characterClass').value
+    let img = form.querySelector('#avatar').value
+
+    fetch(CHAR_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            character: {
+            name: characterName,
+            race: race,
+            character_class: characterClass,
+            img: img}
+        })
+    })
+    .then(res => res.json())
+    .then(character => {let id = character.id 
+                        postGendersAndOrientations(id, genders, orientations)
+                        })
     
+    clearMainContainer()
+    clearHeroBanner()
+    fetchCharacters()
+
+}
+
+function postGendersAndOrientations(id, genders, orientations){
+    genders.forEach(gender => createCharacterGenders(id, gender))
+    orientations.forEach(orientation => createCharacterOrientations(id, orientation))
+}
+
+function createCharacterGenders(id, gender){
+    fetch(BASE_URL + 'character_genders', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            character_gender: {
+            character_id: id,
+            gender_id: parseInt(gender)
+                            }   
+            })
+        })
+}
+
+function createCharacterOrientations(id, orientation){
+    fetch(BASE_URL + 'character_orientations', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            character_orientation: {
+            character_id: id,
+            orientation_id: parseInt(orientation)
+                            }   
+            })
+        })
 }

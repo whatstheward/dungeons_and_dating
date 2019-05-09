@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_05_08_191129) do
+=======
+ActiveRecord::Schema.define(version: 2019_05_08_000606) do
+>>>>>>> cdb163baab1be00ca157b9fa8f78031c9e523384
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "abilities", force: :cascade do |t|
     t.bigint "user_character_id"
     t.integer "strength"
@@ -36,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_191129) do
     t.index ["relationships_id"], name: "index_character_dates_on_relationships_id"
   end
 
+=======
+>>>>>>> cdb163baab1be00ca157b9fa8f78031c9e523384
   create_table "character_genders", force: :cascade do |t|
     t.bigint "user_character_id"
     t.bigint "gender_id"
@@ -51,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_191129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["orientation_id"], name: "index_character_orientations_on_orientation_id"
+<<<<<<< HEAD
     t.index ["user_character_id"], name: "index_character_orientations_on_user_character_id"
   end
 
@@ -70,6 +78,21 @@ ActiveRecord::Schema.define(version: 2019_05_08_191129) do
   end
 
   create_table "npcs", force: :cascade do |t|
+=======
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "race"
+    t.string "character_class"
+    t.string "bio"
+    t.string "img"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+>>>>>>> cdb163baab1be00ca157b9fa8f78031c9e523384
     t.string "name"
     t.string "race"
     t.string "character_class"
@@ -85,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_191129) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "relationships", force: :cascade do |t|
     t.bigint "user_character_id"
     t.bigint "npc_id"
@@ -114,3 +138,5 @@ ActiveRecord::Schema.define(version: 2019_05_08_191129) do
   add_foreign_key "relationships", "npcs"
   add_foreign_key "relationships", "user_characters"
 end
+=======
+>>>>>>> cdb163baab1be00ca157b9fa8f78031c9e523384

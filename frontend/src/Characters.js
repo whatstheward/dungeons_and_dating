@@ -25,7 +25,7 @@ function buildCharacterModal(character){
     fetchCharactersGenders(character)
     fetchCharacterOrientations(character)
     let id = character.id
-    let container = document.querySelector('body > section')
+    let container = document.querySelector('#main-section')
     let modal = document.createElement('div')
     modal.classList += "modal"
     modal.id = 'modal' + id
@@ -79,6 +79,7 @@ function toggleModalOff(e){
 function renderCharacter(character){
     buildCharacterModal(character)
     let div = document.querySelector('#char-columns')
+    
     let card = document.createElement('div')
     card.className = 'card'
     
@@ -99,16 +100,198 @@ function renderCharacter(character){
     attrBtn.dataset.id = character.id
     attrBtn.addEventListener('click', toggleModalOn)
 
-    let selectBtn = document.createElement('button')
-    selectBtn.className = "button is-success is-small"
-    selectBtn.innerText = "Select Character"
-    selectBtn.dataset.id = character.id
+    let dateBtn = document.createElement('button')
+    dateBtn.className = "button is-success is-small"
+    dateBtn.innerText = "Date this Character"
+    dateBtn.dataset.id = character.id
+    dateBtn.addEventListener('click', goOnDate)
+
 
     contentDiv.appendChild(name)
     contentDiv.appendChild(attrBtn)
-    contentDiv.appendChild(selectBtn)
+    contentDiv.appendChild(dateBtn)
     card.appendChild(img)
     card.appendChild(contentDiv)
     div.appendChild(card)
+
+}
+
+function goOnDate(e){
+    let id = e.target.dataset.id
+    fetchCharacter(id)
+    clearMainContainer()
+    buildDate()
+}
+
+function renderCharacterForm(){
+
+    fetchAllOrientations()
+
+    let main = document.querySelector('#char-columns')
+
+    let form = document.createElement('form')
+    form.id = "characterCreationForm"
+
+    let nameDiv = document.createElement('div')
+    nameDiv.id = "nameDiv"
+
+    let name = document.createElement('label')
+    name.className = "label"
+    name.htmlFor = 'name'
+    name.innerText = "Username: "
+
+    let nameInput = document.createElement('input')
+    nameInput.id = "username"
+    nameInput.className = "input"
+    nameInput.type = "text"
+    nameInput.style = "width:10em;"
+
+    nameDiv.appendChild(name)
+    nameDiv.appendChild(nameInput)
+    form.appendChild(nameDiv)
+
+    let characterNameDiv = document.createElement('div')
+    characterNameDiv.id = "characterNameDiv"
+
+    let characterName = document.createElement('label')
+    characterName.className = "label"
+    characterName.htmlFor = 'characterName'
+    characterName.innerText = "Character Name: "
+
+
+    let characterNameInput = document.createElement('input')
+    characterNameInput.id = 'characterName'
+    characterNameInput.className = "input"
+    characterNameInput.type = "text"
+    characterNameInput.style = "width:10em;"
+
+    characterNameDiv.appendChild(characterName)
+    characterNameDiv.appendChild(characterNameInput)
+    form.appendChild(characterNameDiv)
+
+    let raceDiv = document.createElement('div')
+    raceDiv.id = "raceDiv"
+
+    let race = document.createElement('label')
+    race.className = "label"
+    race.htmlFor= "race"
+    race.innerText = "Character Race: "
+
+    let raceInput = document.createElement('div')
+    raceInput.className = "select"
+
+    let raceSelect = document.createElement('select')
+    raceSelect.name = "race"
+    raceSelect.id = "race"
+    raceSelect.innerHTML =  '<option>Dragonborn</option>' +
+                            '<option>Dwarf</option>' +
+                            '<option>Elf</option>' +
+                            '<option>Gnome</option>' +
+                            '<option>Half Elf</option>' +
+                            '<option>Half Orc</option>' +
+                            '<option>Halfling</option>' +
+                            '<option>Human</option>' +
+                            '<option>Tiefling</option>' 
+
+    raceInput.appendChild(raceSelect)
+    raceDiv.appendChild(race)
+    raceDiv.appendChild(raceInput)
+    form.appendChild(raceDiv)
+
+    let classDiv = document.createElement('div')
+    classDiv.id = "classDiv"
+
+    let character_class = document.createElement('label')
+    character_class.className = "label"
+    character_class.htmlFor = "character_class"
+    character_class.innerText = "Character Class: "
+
+    let classInput = document.createElement('div')
+    classInput.className = "select"
+
+    let classSelect = document.createElement('select')
+    classSelect.id = "characterClass"
+    classSelect.name = "characterClass"
+    classSelect.innerHTML =  '<option>Barbarian</option>' +
+                            '<option>Bard</option>' +
+                            '<option>Cleric</option>' +
+                            '<option>Druid</option>' +
+                            '<option>Fighter</option>' +
+                            '<option>Monk</option>' +
+                            '<option>Paladin</option>' +
+                            '<option>Ranger</option>' +
+                            '<option>Rogue</option>' +
+                            '<option>Sorcerer</option>' +
+                            '<option>Wizard</option>' 
+
+    classInput.appendChild(classSelect)
+    classDiv.appendChild(character_class)
+    classDiv.appendChild(classInput)
+    form.appendChild(classDiv)
+
+    let genderDiv = document.createElement('div')
+    genderDiv.id = "genderDiv"
+    genderDiv.className = "box"
+    
+    let gender = document.createElement('label')
+    gender.className = "label"
+    gender.htmlFor = "gender"
+    gender.innerText = "Gender: "
+    
+    let genderInput = document.createElement('div')
+    genderInput.className = "select-gender"
+    fetchAllGenders()
+
+    genderDiv.appendChild(gender)
+    genderDiv.appendChild(genderInput)
+    form.appendChild(genderDiv)
+
+    let orientationDiv = document.createElement('div')
+    orientationDiv.id = "orientationDiv"
+    orientationDiv.className = "box"
+   
+    
+    let orientation = document.createElement('label')
+    orientation.className = "label"
+    orientation.htmlFor = "orientation"
+    orientation.innerText = "Sexual Orientation: "
+    
+    let orientationInput = document.createElement('div')
+    orientationInput.className = "select-orientation"
+    
+    fetchAllOrientations()
+
+    orientationDiv.appendChild(orientation)
+    orientationDiv.appendChild(orientationInput)
+    form.appendChild(orientationDiv)
+
+    let imgDiv = document.createElement('div')
+    let img = document.createElement('label')
+    img.innerText = "Input Avatar HTML:"
+    img.htmlFor = 'avatar'
+
+    let imgInput = document.createElement('input')
+    imgInput.type = 'url'
+    imgInput.className ="input"
+    imgInput.id = 'avatar'
+    imgInput.name = 'avatar'
+    imgInput.setAttribute('pattern', 'https://.*')
+    
+    imgDiv.appendChild(img)
+    imgDiv.appendChild(imgInput)
+    form.appendChild(imgDiv)
+
+    let submit = document.createElement('button')
+    submit.className = "button is-success"
+    submit.innerText = "Create Character"
+    submit.addEventListener('click', handleForm)
+    form.appendChild(document.createElement('br'))
+    form.appendChild(submit)
+
+    main.appendChild(form)
+    
+}
+
+function buildDate(character){
 
 }
