@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :quests, only: [:index]
     resources :dates, only: [:index]
     resources :abilities, only: [:index]
+    resources :character_genders, only: [:create, :update]
+
+    get '/allgenders', to: 'genders#allgenders', controller: :genders
+    get '/allorientations', to: 'orientations#allorientations', controller: :orientations
   end
 
   

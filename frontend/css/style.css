@@ -87,23 +87,15 @@
 
 #char-columns{
     display: grid;
-
-    grid: auto-flow dense/ 1fr 1fr 1fr
-
-    justify-content: center;
     justify-items: center;
     grid: auto-flow dense/ repeat(3, 1fr);
 
 .button{
     margin:.5em;
-
 }
 .section{
 
     justify-content: center;
-
-}
-
     display: flex;
     justify-content: flex-end; 
 }
