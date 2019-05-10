@@ -30,6 +30,8 @@ function buildCharacterModal(character){
     modal.classList += "modal"
     modal.id = 'modal' + id
 
+    
+
     let bg = document.createElement('div')
     bg.className = "modal-background"
 
@@ -122,5 +124,10 @@ function goOnDate(e){
     clearHeroBanner()
     fetchCharacterForDate(id)
     fetchDateEvents()
+    clearModals()
 }
 
+function clearModals(){
+    let modals = document.querySelectorAll('.modal')
+    modals.forEach(modal=> modal.remove())
+}

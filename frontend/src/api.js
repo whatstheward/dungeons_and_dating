@@ -47,7 +47,6 @@ function fetchUserGenders(character){
 function fetchUserOrientations(character){
     fetch(USER_CHAR_URL + `${character.id}/user_character_orientations`)
     .then(res => res.json())
-    // .then(orientations => console.log(orientations))
     .then(orientations => orientations.forEach(orientation => renderUserOrientations(orientation)))
     
 }
@@ -56,5 +55,15 @@ function fetchDateEvents(){
     fetch(`http://localhost:3000/date_events`)
     .then(res => res.json())
     .then(dateEvents => dateEvents.forEach(dateEvent => DATE_EVENTS.push(dateEvent)))
+}
+
+function fetchUsers(username){
+    fetch(USER_CHAR_URL)
+    .then(res => res.json())
+    .then(users => users.filter(user=> user.username === username))
+    .then(user => {fetchUser(user[0].id)
+                    clearMainContainer()
+                    fetchCharacters()})
+    
 }
 

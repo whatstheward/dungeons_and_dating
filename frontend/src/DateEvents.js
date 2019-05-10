@@ -1,3 +1,5 @@
+
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -6,24 +8,18 @@ function getRandomInt(min, max) {
 
 
 function getRandomDate(DATE_EVENTS, USER, character){
-    let num1 = getRandomInt(1, 30)
-    let num2 = getRandomInt(1, 30)
-    let num3 = getRandomInt(1, 30)
-    buildRandomDate(num1, num2, num3, USER, character)
+    let num = getRandomInt(1, 30)
+    let event = DATE_EVENTS[num]
+    buildRandomDate(event, USER, character)
 }
-function buildRandomDate(num1, num2, num3, USER, character){
+function buildRandomDate(event, USER, character){
     clearMainContainer()
     clearHeroBanner()
-    console.log('USER:', USER)
-    console.log('character', character)
+    postRelationship(USER, character)
     let banner = document.querySelector('#heroDiv')
     let main = document.querySelector('#char-columns')
-    let event1 = DATE_EVENTS[num1]
-    let event2 = DATE_EVENTS[num2]
-    let event3 = DATE_EVENTS[num3]
-    const POINTS= []
 
-    let cr1 = event1.challenge_rating
+    let cr1 = event.challenge_rating
 
     let eventCard = document.createElement('div')
     eventCard.className = 'card'
@@ -35,7 +31,7 @@ function buildRandomDate(num1, num2, num3, USER, character){
 
     let eventName = document.createElement('p')
     eventName.className = "card-header-title"
-    eventName.innerText = event1.title
+    eventName.innerText = event.title
 
     let cardContent = document.createElement('div')
     cardContent.className = "card-content"
@@ -43,7 +39,7 @@ function buildRandomDate(num1, num2, num3, USER, character){
     let eventScenario = document.createElement('div')
     eventScenario.className = 'content'
     eventScenario.id = "event-scenario"
-    eventScenario.innerText = event1.situation
+    eventScenario.innerText = event.situation
 
     let eventRoll = document.createElement('p')
     eventRoll.innerText =  "Difficulty: " + cr1
@@ -61,7 +57,7 @@ function buildRandomDate(num1, num2, num3, USER, character){
     roll.id = "dice-roll"
     roll.dataset.id = cr1
     roll.innerText = "Roll a D20"
-    roll.addEventListener('click', rollDice)
+    roll.addEventListener('click', (e)=> rollDice(e, USER, character))
 
     eventScenario.appendChild(eventRoll)
     cardContent.appendChild(eventScenario)
@@ -75,10 +71,9 @@ function buildRandomDate(num1, num2, num3, USER, character){
 
 }
 
-function rollDice(e){
+function rollDice(e, USER, character){
     let button = document.querySelector('#dice-roll')
     button.remove()
-    
     
     let cr = parseInt(e.target.dataset.id)
     let result = ()=> Math.floor((Math.random() * 20)+1)
@@ -90,21 +85,86 @@ function rollDice(e){
     contentDiv.appendChild(resultsDiv)
     
     let continueBtn = document.createElement('button')
+    continueBtn.className = "button is-primary"
     continueBtn.innerText = "Next Event "
-    continueBtn.addEventListener('click', continueOn)
+    continueBtn.addEventListener('click', (e) => continueOn(e, USER, character))
+    
+    let exitBtn = document.createElement('button')
+    exitBtn.className = "button is-danger"
+    exitBtn.innerText = "Let's call it a night :/"
+    exitBtn.addEventListener('click', backToMain)
+    
+    contentDiv.appendChild(exitBtn)
+    contentDiv.appendChild(continueBtn)
+
+   
     
     if(cr<=roll){
         resultsDiv.innerText = "Ooh lala! This date is going well!"
-        console.log('cr', cr)
-        console.log('result', roll)
+        fetchRelationship(USER, character, 5)
     }else{
         resultsDiv.innerText = "Oh wow..... this is awkward. :|"
-        console.log('cr', cr)
-        console.log('result', roll)
+        fetchRelationship(USER, character, -5)
+
     }
+
+
     
 }
 
-function continueOn(e){
-    console.log(e.target)
+function continueOn(e, USER, character){
+    getRandomDate(DATE_EVENTS, USER, character)
+}
+
+function backToMain(){
+    clearMainContainer()
+    fetchCharacters()
+}
+
+function postRelationship(USER, character){
+    let user_id = USER.id
+    let character_id = character.id
+    fetch('http://localhost:3000/relationships', {
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify({
+            "relationship": {
+                "user_character_id": user_id,
+                "character_id": character_id,
+                "progress": 0
+            }
+        })
+    })
+    .catch(function(e){console.log(e)})
+}
+function updateRelationship(relationship, points){
+    let id = relationship.id
+    let progress = relationship.progress
+    console.log(progress)
+    progress += points
+    console.log(progress)
+    fetch(`http://localhost:3000/relationships/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify({
+            "relationship": {
+                "progress": progress
+            }
+        })
+    })
+    .then(res => console.log(res.json()))
+    .catch(function(e){console.log(e)})
+}
+
+function fetchRelationship(USER, character, points){
+    fetch(BASE_URL + 'relationships')
+    .then(res => res.json())
+    .then(relationships => relationships.filter(relationship => relationship.character_id == character.id && relationship.user_character_id == USER.id))
+    .then(relationship => updateRelationship(relationship[0], points))
+
 }

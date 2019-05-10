@@ -9,20 +9,28 @@ const DATE_EVENTS = []
 let USER = null
 
 
+
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
 
+
 loadCharacterForm()
 fetchDateEvents()
+document.querySelector("#login").addEventListener('click', handleLogin)
 
 })
 
+function handleLogin(e){
+    e.preventDefault()
+    let username = e.target.parentElement.username.value
+    fetchUsers(username)
+}
 
 function loadCharacterForm(){
     let hero = document.querySelector("body > section.hero")
     let h1 = document.createElement('h1')
     h1.className = "title is-1"
-    h1.innerText ="Create and Character to begin your romantic adventure!"
+    h1.innerText ="Create a Character to begin your romantic adventure!"
     hero.appendChild(h1)
     renderCharacterForm()
 }

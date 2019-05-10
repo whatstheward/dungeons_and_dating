@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :user_character_orientations, only: [:create, :update]
     resources :character_genders, only: [:create, :update]
     resources :character_orientations, only: [:create, :update]
+    resources :relationships, only: [:create, :index, :update]
 
     get '/characters/:character_id/character_genders', to: 'genders#character_genders', controller: :genders
     get '/user_characters/:user_character_id/user_character_genders', to: 'genders#user_character_genders', controller: :genders
