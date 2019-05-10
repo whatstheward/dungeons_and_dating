@@ -50,6 +50,7 @@ function fetchUserOrientations(character){
     .then(res => res.json())
     .then(orientations => orientations.forEach(orientation => renderUserOrientations(orientation)))
     
+    
 }
 
 function fetchDateEvents(){

@@ -279,7 +279,7 @@ function renderUserCharacter(character){
 }
 
 function postGendersAndOrientations(id, genders, orientations){
-    genders.forEach(gender => createCharacterGenders(id, gender))
+    genders.forEach(gender => createCharacterGenders(id, gender));
     orientations.forEach(orientation => createCharacterOrientations(id, orientation))
 }
 

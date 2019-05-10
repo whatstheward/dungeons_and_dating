@@ -79,12 +79,12 @@ function buildCharacterModal(character){
                             let percentage = document.createElement('h1')
                             percentage.className = "subtitle"
                             percentage.innerText = "Relationship Progress: " + relationship[0].progress +"%"
-                            card.appendChild(percentage)
+                            cardContent.appendChild(percentage)
                             let progressBar = document.createElement('progress')
                             progressBar.className = "progress is-danger"
                             progressBar.setAttribute('max', 100)
                             progressBar.value = relationship[0].progress
-                            card.appendChild(progressBar)
+                            cardContent.appendChild(progressBar)
                             }
                         })
 
