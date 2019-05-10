@@ -1,7 +1,4 @@
 function renderCharacterForm(){
-
-
-
     let main = document.querySelector('#char-columns')
 
     let form = document.createElement('form')
@@ -169,7 +166,9 @@ function renderCharacterForm(){
 
 function buildGenderOptions(genders){
     let selection = document.querySelector('.select-gender')
-    genders.forEach(gender => {let genderOpt = document.createElement('input')
+    genders.forEach(gender => { let optionDiv = document.createElement('div')
+                                optionDiv.id = "optionDiv"
+                                let genderOpt = document.createElement('input')
                                 genderOpt.name = "gender"
                                 let label = document.createElement('label')
                                 label.htmlFor = gender.name
@@ -177,23 +176,27 @@ function buildGenderOptions(genders){
                                 genderOpt.type = "checkbox"
                                 genderOpt.value = gender.name
                                 genderOpt.dataset.id = gender.id
-                                selection.appendChild(genderOpt)
-                                selection.appendChild(label)
+                                optionDiv.appendChild(genderOpt)
+                                optionDiv.appendChild(label)
+                                selection.appendChild(optionDiv)
                             })
 }
 
 function buildOrientationOptions(orientations){
     let selection = document.querySelector('.select-orientation')
-    orientations.forEach(orientation => {let orientationOpt = document.createElement('input')
-                                orientationOpt.name = "orientation"
-                                let label = document.createElement('label')
-                                label.htmlFor = orientation.name
-                                label.innerText = orientation.name 
-                                orientationOpt.type = "checkbox"
-                                orientationOpt.value = orientation.name
-                                orientationOpt.dataset.id = orientation.id
-                                selection.appendChild(orientationOpt)
-                                selection.appendChild(label)
+    orientations.forEach(orientation => {   let optionDiv = document.createElement('div')
+                                            optionDiv.id = "optionDiv"
+                                            let orientationOpt = document.createElement('input')
+                                            orientationOpt.name = "orientation"
+                                            let label = document.createElement('label')
+                                            label.htmlFor = orientation.name
+                                            label.innerText = orientation.name 
+                                            orientationOpt.type = "checkbox"
+                                            orientationOpt.value = orientation.name
+                                            orientationOpt.dataset.id = orientation.id
+                                            optionDiv.appendChild(orientationOpt)
+                                            optionDiv.appendChild(label)
+                                            selection.appendChild(optionDiv)
                             })
 }
 
@@ -236,7 +239,6 @@ function handleForm(e){
                         postGendersAndOrientations(id, genders, orientations)
                         renderUserCharacter(character)
                         })
-    
     clearMainContainer()
     clearHeroBanner()
     fetchCharacters()

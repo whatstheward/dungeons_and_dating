@@ -93,7 +93,7 @@ function rollDice(e, USER, character){
     exitBtn.className = "button is-danger"
     exitBtn.innerText = "Let's call it a night :/"
     exitBtn.addEventListener('click', backToMain)
-    
+
     contentDiv.appendChild(exitBtn)
     contentDiv.appendChild(continueBtn)
 
@@ -142,9 +142,8 @@ function postRelationship(USER, character){
 function updateRelationship(relationship, points){
     let id = relationship.id
     let progress = relationship.progress
-    console.log(progress)
     progress += points
-    console.log(progress)
+
     fetch(`http://localhost:3000/relationships/${id}`, {
         method: 'PATCH',
         headers: {
@@ -157,7 +156,19 @@ function updateRelationship(relationship, points){
             }
         })
     })
-    .then(res => console.log(res.json()))
+    .then(res => res.json())
+    .then(relationship => {
+                            let contentDiv = document.querySelector('#event-scenario')
+                            let percentage = document.createElement('h1')
+                            percentage.className = "subtitle"
+                            percentage.innerText = relationship.progress +"%"
+                            contentDiv.appendChild(percentage)
+                            let progressBar = document.createElement('progress')
+                            progressBar.className = "progress is-danger"
+                            progressBar.setAttribute('max', 100)
+                            progressBar.innerText = relationship.progress
+                            progressBar.value = relationship.progress
+                            contentDiv.appendChild(progressBar)})
     .catch(function(e){console.log(e)})
 }
 

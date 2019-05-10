@@ -1,4 +1,5 @@
 function fetchCharacters(){
+    clearHeroBanner()
     let hero = document.querySelector("body > section.hero")
     let h1 = document.createElement('h1')
     h1.className = "title is-1"

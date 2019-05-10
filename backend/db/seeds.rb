@@ -12,6 +12,7 @@ CharacterGender.destroy_all
 CharacterOrientation.destroy_all
 UserGender.destroy_all
 UserOrientation.destroy_all
+Relationship.destroy_all
 Gender.destroy_all
 Orientation.destroy_all
 UserCharacter.destroy_all
@@ -92,7 +93,7 @@ barbarian = Character.create(
 
 CharacterGender.create(gender_id: trans_femme.id, character_id: bard.id)
 CharacterGender.create(gender_id: two_spirit.id, character_id: barbarian.id)
-CharacterGender.create(gender_id: trans_male, character_id: cleric.id)
+CharacterGender.create(gender_id: demi_girl.id, character_id: cleric.id)
 CharacterGender.create(gender_id: nb.id, character_id: bard.id)
 CharacterGender.create(gender_id: intersex.id, character_id: barbarian.id)
 CharacterGender.create(gender_id: female.id, character_id: wizard.id)

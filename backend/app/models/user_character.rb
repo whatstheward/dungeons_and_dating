@@ -8,6 +8,8 @@ class UserCharacter < ApplicationRecord
     has_many :relationships
     has_many :characters, through: :relationships
 
+    validates :username, uniqueness: true
+
 
 
 end

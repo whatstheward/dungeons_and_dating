@@ -6,9 +6,9 @@
 }
 
 #navbar-avatar{
-    width: 7em;
-    height: 7em;
-    margin: 1em;
+    width: 10em;
+    height: 10em;
+
 }
 
 #date-card{
@@ -22,6 +22,7 @@
 }
 
 #top-bar{
+    margin: 1em;
     justify-content: flex-end;
 }
 
@@ -29,13 +30,14 @@
 .menu{
     width: 10em;
     margin-top: 10em;
+    margin-right: 2em;
     display: flex;
     justify-content: flex-start;
     flex-flow: column;
     position: fixed;
 }
 
-body > div.nav-left.nav-menu.menu > ul{
+.nav-left.nav-menu.menu{
     margin-left: 1em;
 }
 
@@ -64,10 +66,26 @@ body > div.nav-left.nav-menu.menu > ul{
 #characterCreationForm > label{
     height: 1em;
     margin:1em;
+}        
+#card-header-title{
+    justify-content: center;
+}
+#optionDiv {
+    display: inline-block;
+    margin-left: 1em;
+}
+#modal-card{
+    width: 50em;
+    height: auto;
+    justify-content: center;
+}
+#modal-card-header{
+    margin: 1em;
 }
 
 #premadeAvatar{
-    max-width: 10em;
+    width: 10em;
+    height: 10em;
 }
 
 .card{

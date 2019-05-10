@@ -51,38 +51,3 @@ function clearHeroBanner(){
     while(hero.firstChild)
         hero.removeChild(hero.firstChild)
 }
-
-
-
-
-
-
-function buildGenderOptions(genders){
-    let selection = document.querySelector('.select-gender')
-    genders.forEach(gender => {let genderOpt = document.createElement('input')
-                                genderOpt.name = "gender"
-                                let label = document.createElement('label')
-                                label.htmlFor = gender.name
-                                label.innerText = gender.name 
-                                genderOpt.type = "checkbox"
-                                genderOpt.value = gender.name
-                                genderOpt.dataset.id = gender.id
-                                selection.appendChild(genderOpt)
-                                selection.appendChild(label)
-                            })
-}
-
-function buildOrientationOptions(orientations){
-    let selection = document.querySelector('.select-orientation')
-    orientations.forEach(orientation => {let orientationOpt = document.createElement('input')
-                                orientationOpt.name = "orientation"
-                                let label = document.createElement('label')
-                                label.htmlFor = orientation.name
-                                label.innerText = orientation.name 
-                                orientationOpt.type = "checkbox"
-                                orientationOpt.value = orientation.name
-                                orientationOpt.dataset.id = orientation.id
-                                selection.appendChild(orientationOpt)
-                                selection.appendChild(label)
-                            })
-}
