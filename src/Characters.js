@@ -36,6 +36,7 @@ function buildCharacterModal(character){
 
     let bg = document.createElement('div')
     bg.className = "modal-background"
+    bg.addEventListener('click', toggleModalOff)
 
     let content = document.createElement('div')
     content.className = "modal-content"

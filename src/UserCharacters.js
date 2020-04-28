@@ -234,7 +234,7 @@ function handleForm(e){
         })
     })
     .then(res => res.json())
-    .then(character => {let id = character.id 
+    .then(character =>  {let id = character.id 
                         USER = character
                         postGendersAndOrientations(id, genders, orientations)
                         renderUserCharacter(character)

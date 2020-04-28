@@ -26,6 +26,9 @@
     justify-content: flex-end;
 }
 
+body > section.hero{
+    background-color: green;
+}
 
 .menu{
     width: 10em;

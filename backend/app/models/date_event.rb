@@ -1,2 +1,0 @@
-class DateEvent < ApplicationRecord
-end
