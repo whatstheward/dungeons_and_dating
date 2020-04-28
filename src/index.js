@@ -3,19 +3,10 @@ const BASE_URL = `http://localhost:3000/`
 const CHAR_URL = `http://localhost:3000/characters/`
 const USER_CHAR_URL = `http://localhost:3000/user_characters/`
 
-const GENDERS = []
-const ORIENTATIONS = []
-const DATE_EVENTS = []
-let USER = null
-
 
 
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
-
-
-loadCharacterForm()
-fetchDateEvents()
 document.querySelector("#login").addEventListener('click', handleLogin)
 
 })
