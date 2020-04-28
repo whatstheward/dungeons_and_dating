@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     </head>
     <body>
-        <nav class="navbar" >
+        <nav class="navbar is-danger" >
             <div class="navbar-brand">
                 <div id="logo" class="navbar-item">
                     <i class="fas fa-dungeon fa-5x"></i>
@@ -17,39 +17,17 @@
                     <i class="fas fa-hand-holding-heart fa-5x"></i>
                 </div>
             </div>
-            <a class="navbar-item">Login</a>
-            <a class="navbar-item">Sign Up</a>
+            <a class="navbar-item" role="button" id="login">Login</a>
+            <a class="navbar-item" role="button" id="sign-up">Sign Up</a>
         </nav>
-                <div class="nav-left nav-menu menu" style="display:none;">
-
-                    <p class="panel heading">
-                        Character Info
-                    </p>
-                    <br>
-                    <img src="" alt="" id="navbar-avatar">
-                    <ul class="menu-list">
-                        <li><strong>Name:</strong><span id="char-name"></span></li>
-                        <li><strong>Class: </strong><span id="char-class"></span></li>
-                        <li><strong>Race:</strong><span id="char-race"></span></li>
-                        <li><strong>Gender(s):</strong><ul id="char-genders"></ul></li>
-                        <li><strong>Sexuality:</strong><ul id="char-sexuality"></ul></li>
-                    </ul>
-                </div>
-                <section class="hero">
-                    <div class="hero-body">
-                        <div class="container" id="heroDiv">
-                        </div>
-                    </div>
-                </section>
+                
         <section class="section" id="main-section">
 
             <div class="container" id="main-container"> 
-                <div class= "is-flex" id="char-columns" >
-
-                </div>
+                <h1 class="title is-1">Welcome to Dungeons & Dating!</h1>
             </div>
         </section>
-
+        <script defer src='src/Forms.js'></script>
         <script defer src='src/UserCharacters.js'></script>
         <script defer src='src/Characters.js'></script>
         <script defer src='src/api.js'></script>
