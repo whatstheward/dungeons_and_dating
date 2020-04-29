@@ -9,15 +9,15 @@ const USER_CHAR_URL = `http://localhost:3000/user_characters/`
 
 document.addEventListener('DOMContentLoaded', function(){
 console.log('The DOM is loaded')
-document.querySelector("#login").addEventListener('click', handleLogin)
-document.querySelector("#sign-up").addEventListener('click', handleSignUp)
+document.querySelector("#login").addEventListener('click', handleNavLogin)
+document.querySelector("#sign-up").addEventListener('click', handleNavSignUp)
 })
 
-const handleLogin = () => {
+const handleNavLogin = () => {
     clearElement(document.querySelector('#main-section'))
     renderLoginForm()}
 
-const handleSignUp= () =>{
+const handleNavSignUp= () =>{
     clearElement(document.querySelector('#main-section'))
     renderSignUpForm()}
 

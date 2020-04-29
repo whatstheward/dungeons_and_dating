@@ -17,7 +17,7 @@ const renderLoginForm = () => {
     form.appendChild(passwordInput)
     form.appendChild(document.createElement('br'))
     form.appendChild(submitButton)
-    
+    form.addEventListener('submit', handleLogin)
     main.appendChild(form)
 }
 
@@ -56,6 +56,21 @@ const renderSignUpForm = () => {
     form.appendChild(confirmPasswordInput)
     form.appendChild(document.createElement('br'))
     form.appendChild(submitButton)
-    
+    form.addEventListener('submit', (e)=>{ e.preventDefault() 
+        console.log(e)})
     main.appendChild(form)
+}
+
+const handleLogin = (e) => {
+    e.preventDefault()
+    let package = {email: e.target.email.value, password: e.target.password.value}
+    fetch('http://localhost:3000/sessions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(package)
+    })
+    .then(res => res.json())
+    .then(console.log)
 }
