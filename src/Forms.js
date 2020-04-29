@@ -72,5 +72,5 @@ const handleLogin = (e) => {
         body: JSON.stringify(package)
     })
     .then(res => res.json())
-    .then(console.log)
+    .then(data => localStorage.setItem('token', data.token))
 }
