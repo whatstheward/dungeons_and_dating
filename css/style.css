@@ -2,6 +2,21 @@
     margin: 0em .15em ;
 }
 
+#main{
+    /* width: 100vw;
+    min-width: 30em; */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#main-section{
+    width: 1200px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 #profile-info{
     border-style: solid;
     border-color: gray;
@@ -30,9 +45,6 @@
     justify-content: flex-end;
 }
 
-body > section.hero{
-    background-color: green;
-}
 
 .menu{
     width: 10em;
@@ -97,9 +109,9 @@ body > section.hero{
 }
 
 .card{
-    margin: 1em;
-    max-width: 20em;
-    width: 7em;
+    margin: 2vw;
+    min-width: 10em;
+    width: 10em;
     box-shadow: -5px  5px 5px  grey;
     border-right: solid;
     border-right-color: grey;
@@ -150,11 +162,7 @@ body > section.hero{
 .button{
     margin:.5em;
 }
-#main-section{
-    display: flex;
-    justify-content: flex-end; 
-    height: 100%;
-}
+
 
 #genderDiv{
     width: 40%;

@@ -1,13 +1,11 @@
 function fetchCharacters(){
-    clearHeroBanner()
-    let hero = document.querySelector("body > section.hero")
-    let h1 = document.createElement('h1')
-    h1.className = "title is-1"
-    h1.innerText = "Choose a character to date:"
-    hero.appendChild(h1)
-    fetch(BASE_URL + 'characters')
+    fetch(CHAR_URL,{
+        headers: {
+            'auth-token': localStorage.getItem('token')
+        }
+    })
     .then(res => res.json())
-    .then(characters => characters.forEach(character => renderCharacter(character)))
+    .then(characters => renderCharacters(characters.data))
 }
 
 function fetchCharactersGenders(character){

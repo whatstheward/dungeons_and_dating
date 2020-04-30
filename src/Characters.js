@@ -1,173 +1,39 @@
-function renderOrientations(character, orientation){
-    let id = character.id
-    let modal = document.querySelector(`#modal${id}`)
-    let orientations = modal.querySelector("#orientations")
-
-    let character_orientation = document.createElement('li')
-    character_orientation.innerText = orientation.name
-
-    orientations.appendChild(character_orientation)
-}
-
-function renderGenders(character, gender){
-    let id = character.id
-    let modal = document.querySelector(`#modal${id}`)
-    let genders = modal.querySelector("#genders")
-
-    let character_gender = document.createElement('li')
-    character_gender.innerText = gender.name
-
-    genders.appendChild(character_gender)
-    
-}
-
-function buildCharacterModal(character){
-    fetchCharactersGenders(character)
-    fetchCharacterOrientations(character)
-   
-
-    let id = character.id
-    let container = document.querySelector('#main-section')
-    let modal = document.createElement('div')
-    modal.classList += "modal"
-    modal.id = 'modal' + id
-
-    
-
-    let bg = document.createElement('div')
-    bg.className = "modal-background"
-    bg.addEventListener('click', toggleModalOff)
-
-    let content = document.createElement('div')
-    content.className = "modal-content"
-
-    let card = document.createElement('div')
-    card.id = "modal-card"
-    card.className = "card"
-
-    let orientations = document.createElement('ul')
-    orientations.innerHTML = '<strong>Sexuality: </strong>'
-    orientations.id = "orientations"
-
-    let genders = document.createElement('ul')
-    genders.innerHTML = '<strong>Gender Identities: </strong>'
-    genders.id = "genders"
-
-    let img = document.createElement('img')
-    img.src = character.img
-    img.id = "premadeAvatar"
-
-    let cardHeader = document.createElement('header')
-    cardHeader.id = "modal-card-header"
-    cardHeader.className = "card-header"
-
-    let name = document.createElement('h1')
-    name.className = "card-header-title title is-1"
-    name.id = "card-header-title"
-    name.innerText = character.name
-
-    let cardContent = document.createElement('div')
-    cardContent.className = "card-content"
-
-    let bio = document.createElement('p')
-    bio.className = "card-content"
-    bio.innerHTML = `<em>${character.bio}</em>`
-    
-    fetch(BASE_URL + 'relationships')
-    .then(res => res.json())
-    .then(relationships => relationships.filter(relationship => relationship.character_id == character.id && relationship.user_character_id == USER.id))
-    .then(relationship => { if(relationship.length!=0){
-                            let percentage = document.createElement('h1')
-                            percentage.className = "subtitle"
-                            percentage.innerText = "Relationship Progress: " + relationship[0].progress +"%"
-                            cardContent.appendChild(percentage)
-                            let progressBar = document.createElement('progress')
-                            progressBar.className = "progress is-danger"
-                            progressBar.setAttribute('max', 100)
-                            progressBar.value = relationship[0].progress
-                            cardContent.appendChild(progressBar)
-                            }
-                        })
-
-
-    let close = document.createElement('button')
-    close.className = "modal-close is-large"
-    close.addEventListener('click', toggleModalOff)
-
-    cardHeader.appendChild(name)
-    cardContent.appendChild(cardHeader)
-    cardContent.appendChild(img)
-    cardContent.appendChild(genders)
-    cardContent.appendChild(orientations)
-    cardContent.appendChild(bio)
-    card.appendChild(cardContent)
-    content.appendChild(card)
-    modal.appendChild(bg)
-    modal.appendChild(close)
-    modal.appendChild(content)
-    container.appendChild(modal)
-}
-
-function toggleModalOn(e){
-    let id = e.target.dataset.id
-    let modal = document.querySelector(`#modal${id}`)
-    modal.classList += ' is-active'
-}
-
-function toggleModalOff(e){
-    e.target.parentElement.className =  'modal'
-}
-
-function renderCharacter(character){
-    buildCharacterModal(character)
-    let div = document.querySelector('#char-columns')
-    
+const renderCharacterCard = (char) => {
+    const main = document.querySelector("#main-section")
     let card = document.createElement('div')
     card.className = 'card'
     
+    let cardImg = document.createElement('div')
+    cardImg.className = 'card-image'
+
+    let figure = document.createElement('figure')
+    figure.className = 'image is-4by4'
+
     let img = document.createElement('img')
-    img.src = character.img
-    img.id = "premadeAvatar"
+    img.src = char.img
     
-    let contentDiv = document.createElement('div')
+    figure.appendChild(img)
+    cardImg.appendChild(figure)
+
+    let cardContent = document.createElement('div')
+    cardContent.className = 'card-content'
     
-    let name = document.createElement('h2')
-    name.className = "title is-4"
-    name.innerText = character.name
+    let media = document.createElement('div')
+    media.className = 'media'
 
+    let name = document.createElement('p')
+    name.className = 'title is-4'
+    name.innerText = char.name
 
-    let attrBtn = document.createElement('button')
-    attrBtn.className = "button is-warning is-small"
-    attrBtn.innerText = "See Attributes"
-    attrBtn.dataset.id = character.id
-    attrBtn.addEventListener('click', toggleModalOn)
+    media.appendChild(name)
+    cardContent.appendChild(media)
 
-    let dateBtn = document.createElement('button')
-    dateBtn.className = "button is-success is-small"
-    dateBtn.innerText = "Date this Character"
-    dateBtn.dataset.id = character.id
-    dateBtn.addEventListener('click', goOnDate)
-
-
-    contentDiv.appendChild(name)
-    contentDiv.appendChild(attrBtn)
-    contentDiv.appendChild(dateBtn)
-    card.appendChild(img)
-    card.appendChild(contentDiv)
-    div.appendChild(card)
-
+   
+    card.appendChild(cardImg)
+    card.appendChild(cardContent)
+    main.appendChild(card)
 }
 
-function goOnDate(e){
-    let id = e.target.dataset.id
-    clearMainContainer()
-    clearHeroBanner()
-    fetchCharacterForDate(id)
-    fetchDateEvents()
-    clearModals()
-}
-
-function clearModals(){
-    let modals = document.querySelectorAll('.modal')
-    modals.forEach(modal=> modal.remove())
+const renderCharacters = (characters) =>{
+    characters.forEach(char => renderCharacterCard(char.attributes))
 }

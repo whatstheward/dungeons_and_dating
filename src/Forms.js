@@ -73,4 +73,5 @@ const handleLogin = (e) => {
     })
     .then(res => res.json())
     .then(data => localStorage.setItem('token', data.token))
+    loadCharacters()
 }
