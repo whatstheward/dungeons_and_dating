@@ -10,7 +10,7 @@
     </head>
     <body>
         <div>
-            <nav class="navbar is-danger" >
+            <nav class="navbar is-danger" id="navbar" >
                 <div class="navbar-brand">
                     <div id="logo" class="navbar-item">
                         <i class="fas fa-dungeon fa-5x"></i>
@@ -19,7 +19,9 @@
                     </div>
                 </div>
                 <a class="navbar-item" role="button" id="login">Login</a>
+                <a class="navbar-item" role="button" id="logout" style="display:none">Log Out</a>
                 <a class="navbar-item" role="button" id="sign-up">Sign Up</a>
+                <a class="navbar-item" role="button" id="profile" style="display:none">Profile</a>
             </nav>
         </div>
         <div id="main">
@@ -30,9 +32,10 @@
                 </div>
             </section>
         </div v>
-            <script defer src='src/Forms.js'></script>
-            <script defer src='src/UserCharacters.js'></script>
-            <script defer src='src/Characters.js'></script>
+        <script defer src='src/Forms.js'></script>
+        <script defer src='src/UserCharacters.js'></script>
+        <script defer src='src/Characters.js'></script>
+        <script defer src='src/globals.js'></script>
         <script defer src='src/api.js'></script>
         <script defer src='src/DateEvents.js'></script>
         <script defer src='src/index.js'></script>

@@ -61,17 +61,3 @@ const renderSignUpForm = () => {
     main.appendChild(form)
 }
 
-async function handleLogin(e){
-    e.preventDefault()
-    let package = {email: e.target.email.value, password: e.target.password.value}
-    let response =  await fetch('http://localhost:3000/sessions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(package)
-    })
-    let data = await response.json()
-    localStorage.setItem('token', data.token)
-    loadCharacters()
-}
