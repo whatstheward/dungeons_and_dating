@@ -8,9 +8,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
     console.log('The DOM is loaded')
     
-    document.querySelector("#login").addEventListener('click', handleNavLogin)
-    document.querySelector("#sign-up").addEventListener('click', handleNavSignUp)
-
+    const login = document.querySelector("#login")
+    login.addEventListener('click', handleNavLogin)
+    const signUp = document.querySelector("#sign-up")
+    signUp.addEventListener('click', handleNavSignUp)
+    if(localStorage.getItem('token')){
+        loadCharacters()
+    }
 })
 
 const handleNavLogin = () => {

@@ -110,8 +110,8 @@
 
 .card{
     margin: 2vw;
-    min-width: 10em;
-    width: 10em;
+    min-width: 8em;
+    width: 8em;
     box-shadow: -5px  5px 5px  grey;
     border-right: solid;
     border-right-color: grey;
@@ -136,14 +136,7 @@
     display: flex;
     flex-flow: wrap;
     justify-content: center; 
-}
-
-#char-columns{
-    width: 100%;
-    display: flex;
-    justify-content: center;    /* Change this */
-    flex-wrap: wrap;
-}
+}   
 
 .card{
     margin: .5em;
@@ -153,60 +146,6 @@
     padding: 1em;
 }
 
-#char-columns{
-    display: grid;
-    justify-items: center;
-    grid: auto-flow dense/ repeat(3, 1fr);
-}
-
 .button{
     margin:.5em;
-}
-
-
-#genderDiv{
-    width: 40%;
-    height: auto;
-}
-
-#genderDiv > div > div { 
-    display: inline-block;
-    justify-content: center;
-    padding: .25em;
-}
-
-#genderDiv > div > div > input{
-    padding: 1em;
-}
-
-#gender {
-    margin: .5em;
-}
-
-#genderDiv > div > div > label{
-    padding: .1em;
-}
-
-#orientationDiv{
-    width: 40%;
-    height: auto;
-}
-
-#orientationDiv > div > div { 
-    display: inline-block;
-    justify-content: center;
-    padding: .25em;
-}
-
-#orientationDiv > div > div > input{
-    padding: .1em;
-}
-
-#orientationDiv > div > div > label{
-    padding: .1em;
-}
-
-
-body{
-    align-content: center;
 }
