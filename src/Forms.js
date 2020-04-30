@@ -22,32 +22,36 @@ const renderLoginForm = () => {
 }
 
 const renderSignUpForm = () => {
-    const main = document.querySelector('#main-section')
     const form = document.createElement('form')
-    const nameInput = document.createElement('input')
-        nameInput.name = "name"
-        nameInput.type = "text"
-        nameInput.placeholder = "Name"
+    const firstNameInput = document.createElement('input')
+        firstNameInput.name = "firstName"
+        firstNameInput.type = "text"
+        firstNameInput.placeholder = "First Name"
+    const lastNameInput = document.createElement('input')
+        lastNameInput.name = "lastName"
+        lastNameInput.type = "text"
+        lastNameInput.placeholder = "Last Name"
     const emailInput = document.createElement('input')
         emailInput.name = "email"
         emailInput.type = "email"
         emailInput.placeholder = "Enter Your Email..."
     const confirmEmailInput = document.createElement('input')
-        confirmEmailInput.name = "confirm_email"
-        confirmEmailInput.type = "confirm_email"
+        confirmEmailInput.name = "confirmEmail"
+        confirmEmailInput.type = "confirmEmail"
         confirmEmailInput.placeholder = "Confirm Your Email..."
     const passwordInput = document.createElement('input')
         passwordInput.name = "password"
         passwordInput.type = "password"
         passwordInput.placeholder = "Enter Your Password..."
     const confirmPasswordInput = document.createElement('input')
-        confirmPasswordInput.name = "confirm_password"
-        confirmPasswordInput.type = "confirm_password"
+        confirmPasswordInput.name = "confirmPassword"
+        confirmPasswordInput.type = "confirmPassword"
         confirmPasswordInput.placeholder = "Confirm Your Password..."
     const submitButton = document.createElement('button')
         submitButton.type="submit"
         submitButton.innerText = "Submit"
-    form.appendChild(nameInput)
+    form.appendChild(firstNameInput)
+    form.appendChild(lastNameInput)
     form.appendChild(document.createElement('br'))
     form.appendChild(emailInput)
     form.appendChild(confirmEmailInput)
@@ -56,8 +60,7 @@ const renderSignUpForm = () => {
     form.appendChild(confirmPasswordInput)
     form.appendChild(document.createElement('br'))
     form.appendChild(submitButton)
-    form.addEventListener('submit', (e)=>{ e.preventDefault() 
-        console.log(e)})
-    main.appendChild(form)
+    form.addEventListener('submit', (e)=>handleSignUp(e))
+    globals.main().appendChild(form)
 }
 

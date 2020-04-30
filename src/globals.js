@@ -20,5 +20,10 @@ class Globals{
         return profile
     }
 
+    main(){
+        const main = document.querySelector('#main-section')
+        return main
+    }
+
 
 }

@@ -1,6 +1,8 @@
 
 const BASE_URL = `http://localhost:3000/`
 
+const USER_URL = `http://localhost:3000/users`
+
 const CHAR_URL = `http://localhost:3000/characters/`
 
 const globals = new Globals()
@@ -34,15 +36,39 @@ const handleLogin = async (e) =>{
     let data = await response.json()
     localStorage.setItem('token', data.token)
         globals.login().style.display = 'none'
-        globals.logOut().style.display  = 'block'
+        globals.logOut().style.display  = ''
         globals.signUp().style.display = 'none'
-        globals.profile().style.display = 'block'
+        globals.profile().style.display = ''
     loadCharacters()
 }
 
 const handleSignUp = async (e) => {
     e.preventDefault()
-    let package = 
+    let package = {first_name: e.target.firstName.value, last_name: e.target.lastName.value}
+    if(e.target.email.value == e.target.confirmEmail.value){
+        package.email = e.target.email.value
+    }else{
+        alert("Emails must match.")
+    }
+    if(e.target.password.value == e.target.confirmPassword.value){
+        package.password  = e.target.password.value
+    }else{
+        alert("Passwords must match.")
+    }
+    let response = await fetch(USER_URL,{
+        method: 'POST',
+        headers: {
+            'Content-Type':  'application/json'
+        },
+        body:  JSON.stringify(package)
+    })
+    let data =  await response.json()
+    localStorage.setItem('token', data.token)
+        globals.login().style.display = 'none'
+        globals.logOut().style.display  = ''
+        globals.signUp().style.display = 'none'
+        globals.profile().style.display = ''
+    loadCharacters()
 }
 
 const clearElement = (element) => {
@@ -56,7 +82,7 @@ globals.signUp().addEventListener('click', handleNavSignUp)
 if(localStorage.getItem('token')){
     loadCharacters()
     globals.login().style.display = 'none'
-    globals.logOut().style.display  = 'block'
+    globals.logOut().style.display  = ''
     globals.signUp().style.display = 'none'
-    globals.profile().style.display = 'block'
+    globals.profile().style.display = ''
 }
