@@ -8,18 +8,17 @@ const CHAR_URL = `http://localhost:3000/characters/`
 const globals = new Globals()
 
 const handleNavLogin = () => {
-    clearElement(document.querySelector('#main-section'))
+    clearElement(globals.main())
     renderLoginForm()
 }
 
 const handleNavSignUp= () =>{
-    clearElement(document.querySelector('#main-section'))
+    clearElement(globals.main())
     renderSignUpForm()
 }
 
 const loadCharacters = () =>{
-    const main = document.querySelector("#main-section")
-    clearElement(main)
+    clearElement(globals.main())
     fetchCharacters()
 }
 
