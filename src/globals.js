@@ -5,30 +5,29 @@ class Globals{
         localStorage.setItem('slug', data.slug)
     }
 
+    logo(){
+        return document.querySelector("#logo")
+    }
+
 
     login(){
-        const login = document.querySelector("#login")
-        return login
+        return document.querySelector("#login")
     }
 
     signUp(){
-        const signUp = document.querySelector("#sign-up")
-        return signUp
+        return document.querySelector("#sign-up")
     }
 
     logOut(){
-        const logout = document.querySelector("#logout")
-        return logout
+        return document.querySelector("#logout")
     }
 
     profile(){
-        const profile = document.querySelector("#profile")
-        return profile
+        return document.querySelector("#profile")
     }
 
     main(){
-        const main = document.querySelector('#main-section')
-        return main
+        return document.querySelector('#main-section')
     }
 
     baseUrl(){

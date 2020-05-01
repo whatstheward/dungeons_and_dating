@@ -71,6 +71,15 @@ const handleNavLogOut = () => {
     globals.main().innerHTML = '<h1 class="title is-1">Welcome to Dungeons & Dating!</h1>'
 }
 
+const renderHomePage = () => {
+    if(localStorage.getItem('token')){
+        loadCharacters()
+    }else{
+        clearElement(globals.main())
+        globals.main().innerHTML = '<h1 class="title is-1">Welcome to Dungeons & Dating!</h1>'
+    }
+}
+
 const clearElement = (element) => {
     while(element.firstChild)
         element.removeChild(element.firstChild)
@@ -91,6 +100,7 @@ const renderNavBar = () => {
 }
 
 const handleNavProfile = () => {
+    clearElement(globals.main())
     fetchUser()
 }
 
@@ -98,6 +108,7 @@ globals.login().addEventListener('click', () =>handleNavLogin())
 globals.signUp().addEventListener('click', () =>handleNavSignUp())
 globals.logOut().addEventListener('click', () =>handleNavLogOut())
 globals.profile().addEventListener('click', () => handleNavProfile())
+globals.logo().addEventListener('click', () => renderHomePage())
 
 if(localStorage.getItem('token')){
     loadCharacters()

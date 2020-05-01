@@ -1,11 +1,11 @@
-function fetchCharacters(){
-    fetch(globals.charUrl(),{
+const fetchCharacters = async () =>{
+    let res = await fetch(globals.charUrl(),{
         headers: {
             'auth-token': localStorage.getItem('token')
         }
     })
-    .then(res => res.json())
-    .then(characters => renderCharacters(characters.data))
+    let characters = await res.json()
+    renderCharacters(characters.data)
 }
 
 const fetchUser = async () => {
@@ -16,7 +16,7 @@ const fetchUser = async () => {
     })
 
     let data = await res.json()
-    console.log(data)
+    renderUserProfile(data.data)
     
 }
 
