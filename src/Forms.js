@@ -20,7 +20,7 @@ const renderLoginForm = () => {
     form.appendChild(passwordInput)
     form.appendChild(document.createElement('br'))
     form.appendChild(submitButton)
-    form.addEventListener('submit', handleLogin)
+    form.addEventListener('submit', ()=>handleLogin())
     globals.main().appendChild(form)
 }
 

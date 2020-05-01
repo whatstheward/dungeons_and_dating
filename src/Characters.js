@@ -37,3 +37,4 @@ const renderCharacterCard = (char) => {
 const renderCharacters = (characters) =>{
     characters.forEach(char => renderCharacterCard(char.attributes))
 }
+

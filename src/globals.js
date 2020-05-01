@@ -1,5 +1,11 @@
 class Globals{
     
+    setToken(data){
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('slug', data.slug)
+    }
+
+
     login(){
         const login = document.querySelector("#login")
         return login
@@ -23,6 +29,22 @@ class Globals{
     main(){
         const main = document.querySelector('#main-section')
         return main
+    }
+
+    baseUrl(){
+        return `http://localhost:3000/`
+    }
+
+    sessionsUrl(){
+        return `http://localhost:3000/sessions`
+    } 
+
+    userUrl(){
+        return `http://localhost:3000/users/`
+    }
+
+    charUrl(){
+        return `http://localhost:3000/characters/`
     }
 
 

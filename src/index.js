@@ -1,10 +1,3 @@
-
-const BASE_URL = `http://localhost:3000/`
-
-const USER_URL = `http://localhost:3000/users`
-
-const CHAR_URL = `http://localhost:3000/characters/`
-
 const globals = new Globals()
 
 const handleNavLogin = () => {
@@ -25,7 +18,7 @@ const loadCharacters = () =>{
 const handleLogin = async (e) =>{
     e.preventDefault()
     let package = {email: e.target.email.value, password: e.target.password.value}
-    let response =  await fetch('http://localhost:3000/sessions', {
+    let response =  await fetch(globals.sessionsUrl(), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,12 +26,15 @@ const handleLogin = async (e) =>{
         body: JSON.stringify(package)
     })
     let data = await response.json()
-    localStorage.setItem('token', data.token)
-        globals.login().style.display = 'none'
-        globals.logOut().style.display  = ''
-        globals.signUp().style.display = 'none'
-        globals.profile().style.display = ''
-    loadCharacters()
+    if(data.errors){
+        alert(data.errors[0])
+        clearElement(globals.main())
+        renderLoginForm()
+    }else{
+        globals.setToken(data)
+        renderNavBar()
+        loadCharacters()
+    }
 }
 
 const handleSignUp = async (e) => {
@@ -54,7 +50,7 @@ const handleSignUp = async (e) => {
     }else{
         alert("Passwords must match.")
     }
-    let response = await fetch(USER_URL,{
+    let response = await fetch(globals.userUrl(),{
         method: 'POST',
         headers: {
             'Content-Type':  'application/json'
@@ -62,12 +58,17 @@ const handleSignUp = async (e) => {
         body:  JSON.stringify(package)
     })
     let data =  await response.json()
-    localStorage.setItem('token', data.token)
-        globals.login().style.display = 'none'
-        globals.logOut().style.display  = ''
-        globals.signUp().style.display = 'none'
-        globals.profile().style.display = ''
+    globals.setToken(data)
+    renderNavBar()
     loadCharacters()
+}
+
+const handleNavLogOut = () => {
+    localStorage.clear()
+    renderNavBar()
+    clearElement(globals.main())
+    
+    globals.main().innerHTML = '<h1 class="title is-1">Welcome to Dungeons & Dating!</h1>'
 }
 
 const clearElement = (element) => {
@@ -75,13 +76,30 @@ const clearElement = (element) => {
         element.removeChild(element.firstChild)
 }
 
-globals.login().addEventListener('click', handleNavLogin)
-globals.signUp().addEventListener('click', handleNavSignUp)
+const renderNavBar = () => {
+    if(localStorage.getItem('token')){
+        globals.login().style.display = 'none'
+        globals.logOut().style.display  = ''
+        globals.signUp().style.display = 'none'
+        globals.profile().style.display = ''
+    }else{
+        globals.login().style.display = ''
+        globals.logOut().style.display  = 'none'
+        globals.signUp().style.display = ''
+        globals.profile().style.display = 'none'
+    }
+}
+
+const handleNavProfile = () => {
+    fetchUser()
+}
+
+globals.login().addEventListener('click', () =>handleNavLogin())
+globals.signUp().addEventListener('click', () =>handleNavSignUp())
+globals.logOut().addEventListener('click', () =>handleNavLogOut())
+globals.profile().addEventListener('click', () => handleNavProfile())
 
 if(localStorage.getItem('token')){
     loadCharacters()
-    globals.login().style.display = 'none'
-    globals.logOut().style.display  = ''
-    globals.signUp().style.display = 'none'
-    globals.profile().style.display = ''
+    renderNavBar()
 }

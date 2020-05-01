@@ -1,6 +1,5 @@
 function fetchCharacters(){
-    console.log(localStorage.getItem('token'))
-    fetch(CHAR_URL,{
+    fetch(globals.charUrl(),{
         headers: {
             'auth-token': localStorage.getItem('token')
         }
@@ -8,4 +7,18 @@ function fetchCharacters(){
     .then(res => res.json())
     .then(characters => renderCharacters(characters.data))
 }
+
+const fetchUser = async () => {
+    let res = await fetch(globals.userUrl()+`${localStorage.getItem('slug')}`, {
+    headers:{
+            'auth-token': localStorage.getItem('token')
+        }
+    })
+
+    let data = await res.json()
+    console.log(data)
+    
+}
+
+
 
