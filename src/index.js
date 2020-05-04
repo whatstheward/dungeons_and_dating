@@ -85,6 +85,12 @@ const clearElement = (element) => {
         element.removeChild(element.firstChild)
 }
 
+const closeModal = (e) => {
+    if(e.target.className.includes('modal')){
+        document.querySelector('.modal').remove()
+    }
+}
+
 const renderNavBar = () => {
     if(localStorage.getItem('token')){
         globals.login().style.display = 'none'
@@ -104,12 +110,18 @@ const handleNavProfile = () => {
     fetchUser()
 }
 
+const handleMainClick = (e) => {
+    if(e.target.id == 'moreBtn'){
+        fetchSpecificCharacter(e.target.dataset.id)
+    }
+}
+
 globals.login().addEventListener('click', () =>handleNavLogin())
 globals.signUp().addEventListener('click', () =>handleNavSignUp())
 globals.logOut().addEventListener('click', () =>handleNavLogOut())
 globals.profile().addEventListener('click', () => handleNavProfile())
 globals.logo().addEventListener('click', () => renderHomePage())
-
+globals.main().addEventListener('click', (e)=> handleMainClick(e))
 if(localStorage.getItem('token')){
     loadCharacters()
     renderNavBar()

@@ -3,15 +3,14 @@
 }
 
 #main{
-    /* width: 100vw;
-    min-width: 30em; */
     display: flex;
+    width:  max-content;
     justify-content: center;
     flex-direction: row;
 }
 
 #main-section{
-    width: 1200px;
+    width: 100vw;
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -33,135 +32,50 @@
     width: 10em;
 }
 
-#profile-info{
-    border-style: solid;
-    border-color: gray;
-    margin: .5em;
-    border-width: 1px;
-}
-
-#navbar-avatar{
-    width: 10em;
-    height: 10em;
-
-}
-
-#date-card{
-    width: 80%;
-}
-
-#date-card img{
-    width: 10em;
-    height: 10em;
-    margin: 1em;
-}
-
-#top-bar{
-    margin: 1em;
-    justify-content: flex-end;
-}
-
-
-.menu{
-    width: 10em;
-    height: auto;
-    margin-top:5em;
-    margin-right: 2em;
-    display: flex;
-    justify-content: flex-start;
-    flex-flow: column;
-    position: fixed;
-}
-
-.nav-left.nav-menu.menu{
-    margin-left: 1em;
-}
-
-.hero{
-    text-align: center;
-}
-
-#characterCreationForm{
-    width: 80%;
-    display: flex;
-    justify-content: center;    /* Change this */
-    flex-wrap: wrap;
-}
-#creatorCard{
-    width: 80%;
-    height: 100em;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-#characterCreationForm >div{
-    margin: 1em;
-}
-
-#characterCreationForm > label{
-    height: 1em;
-    margin:1em;
-}        
-#card-header-title{
-    justify-content: center;
-}
-#optionDiv {
-    display: inline-block;
-    margin-left: 1em;
-}
-#modal-card{
-    width: 50em;
-    height: auto;
-    justify-content: center;
-}
-#modal-card-header{
-    margin: 1em;
-}
-
-#premadeAvatar{
-    width: 10em;
-    height: 10em;
-}
 
 .card{
     margin: 2vw;
     min-width: 8em;
-    width: 8em;
     box-shadow: -5px  5px 5px  grey;
     border-right: solid;
     border-right-color: grey;
     border-top: solid;
     border-top-color: grey;
-}
-
-.modal .modal-content{
-    display:flex;
-    justify-content:center;
-}
-
-.modal .modal-content .card{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-
-#main-container{
-    width: 80%; 
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center; 
-}   
-
-.card{
-    margin: .5em;
-    width: 20em;
     text-align: center;
     border-radius: 5%;
     padding: 1em;
 }
 
+.centered{
+    text-align: center;
+}
+
+.selected-card{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}  
+
+.selected-card img{
+    /* width: 50% !important; */
+}
+
+#selected-card div {
+    margin: 1%;
+}
+
 .button{
     margin:.5em;
+}
+
+.modal{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content{
+    width: max-content !important;
+    margin: 0% 50% 0% 50%;
+    overflow: visible;
 }

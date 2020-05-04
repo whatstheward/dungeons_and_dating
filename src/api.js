@@ -1,3 +1,5 @@
+// Character Endpoint calls
+
 const fetchCharacters = async () =>{
     let res = await fetch(globals.charUrl(),{
         headers: {
@@ -8,6 +10,19 @@ const fetchCharacters = async () =>{
     renderCharacters(characters.data)
 }
 
+const fetchSpecificCharacter = async (id) =>  {
+    let res = await fetch(globals.charUrl()  +  id, {
+        headers: {
+            'auth-token': localStorage.getItem('token')
+        }
+    })
+
+    let data = await res.json()
+    renderCharacterSpecs(data)
+}
+
+// User Endpoint calls
+
 const fetchUser = async () => {
     let res = await fetch(globals.userUrl()+`${localStorage.getItem('slug')}`, {
     headers:{
@@ -17,7 +32,6 @@ const fetchUser = async () => {
 
     let data = await res.json()
     renderUserProfile(data.data)
-    
 }
 
 
