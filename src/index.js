@@ -71,6 +71,10 @@ const handleNavLogOut = () => {
     globals.main().innerHTML = '<h1 class="title is-1">Welcome to Dungeons & Dating!</h1>'
 }
 
+const handleCreateCharacter = (e) => {
+    debugger
+}
+
 const renderHomePage = () => {
     if(localStorage.getItem('token')){
         loadCharacters()
@@ -97,17 +101,24 @@ const renderNavBar = () => {
         globals.logOut().style.display  = ''
         globals.signUp().style.display = 'none'
         globals.profile().style.display = ''
+        globals.createChar().style.display=''
     }else{
         globals.login().style.display = ''
         globals.logOut().style.display  = 'none'
         globals.signUp().style.display = ''
         globals.profile().style.display = 'none'
+        globals.createChar().style.display='none'
     }
 }
 
 const handleNavProfile = () => {
     clearElement(globals.main())
     fetchUser()
+}
+
+const handleNavCreateChar = () => {
+    clearElement(globals.main())
+    renderCreateCharForm()
 }
 
 const handleMainClick = (e) => {
@@ -122,6 +133,7 @@ globals.logOut().addEventListener('click', () =>handleNavLogOut())
 globals.profile().addEventListener('click', () => handleNavProfile())
 globals.logo().addEventListener('click', () => renderHomePage())
 globals.main().addEventListener('click', (e)=> handleMainClick(e))
+globals.createChar().addEventListener('click', ()=> handleNavCreateChar())
 if(localStorage.getItem('token')){
     loadCharacters()
     renderNavBar()

@@ -21,11 +21,11 @@
     width:  50em;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
 }
 
-#form input{
-
+#form::after{
     margin: .5em 2em;
 }
 #form button{

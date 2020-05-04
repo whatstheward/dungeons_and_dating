@@ -26,6 +26,10 @@ class Globals{
         return document.querySelector("#profile")
     }
 
+    createChar(){
+        return document.querySelector('#createChar')
+    }
+
     main(){
         return document.querySelector('#main-section')
     }

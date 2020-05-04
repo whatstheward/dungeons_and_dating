@@ -106,23 +106,6 @@ const renderCharacterSpecs = (data) =>  {
                                 </div>
                                 </div>
                                 `
-    
-    let cardImg = document.createElement('div')
-    cardImg.className = 'card-image'
-
-    let figure = document.createElement('figure')
-    figure.className = 'image is-4by4 media-left'
-
-    let img = document.createElement('img')
-    img.src = char.img
-
-
-    let cardContent = document.createElement('div')
-    cardContent.className = 'card-content'
-    
-    let media = document.createElement('div')
-    media.className = 'media'
-   
 
 
     let race = document.createElement('p')
@@ -133,21 +116,12 @@ const renderCharacterSpecs = (data) =>  {
     charClass.className = 'title is-5'
     charClass.innerText =   char.characterClass
 
-    let statTable = document.createElement('table')
-    statTable.className  = 'table  is-hoverable is-striped'
-    statTable.innerHTML = ``
-
-    cardContent.appendChild(media)
-
-
     modal.addEventListener('click',  (e)=>  closeModal(e))
 
     modal.appendChild(modalBg)
-    card.appendChild(statTable)
     modalContent.appendChild(card)
     modal.appendChild(modalContent)
     globals.main().appendChild(modal)
-
 }
 
 
