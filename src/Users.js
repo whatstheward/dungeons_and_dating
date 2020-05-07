@@ -1,26 +1,28 @@
 const renderUserProfile = (data) => {
+
     const user = data.attributes
-    const characters = data.relationships.characters.data
+    const characters = data.attributes.characters
     
-    let div = document.createElement('div')
-    div.className = 'tile is-ancestor'
+    const levelCont = document.createElement('div')
+    levelCont.className = 'level'
+    levelCont.id ='profile-header'
 
-    let profileTile = document.createElement('div')
-    profileTile.className = 'tile is-parent'
+    const levelName = document.createElement('div')
+    levelName.className = 'level-item has-text-centered'
 
-    let profileArticle = document.createElement('article')
-    profileArticle.className = 'tile is-child notification is-success'
+    const name = document.createElement('p')
+    name.innerHTML = `
+                    <div>
+                        <p class='heading'>name</p>
+                        <p class='title is-3'>${user.name}</p>
+                    </div>
+                    `
 
-    let profileContent = document.createElement('div')
-    profileContent.className = 'content'
 
-    let name = document.createElement('p')
-    name.className = 'title is-1'
-    name.innerText = user.name
 
-    profileContent.appendChild(name)
-    profileArticle.appendChild(profileContent)
-    profileTile.appendChild(profileArticle)
-    div.appendChild(profileTile)
-    globals.main().appendChild(div)
+
+    levelName.appendChild(name)
+    levelCont.appendChild(levelName)
+    globals.main().appendChild(levelCont)
+    renderCharacters(characters)
 }

@@ -72,7 +72,24 @@ const handleNavLogOut = () => {
 }
 
 const handleCreateCharacter = (e) => {
-    debugger
+    e.preventDefault()
+    const options = {stats:{}}
+    options['name'] = e.target.querySelector(`[name="name"]`).value
+    options['character_class'] = e.target.querySelector(`[name="characterClass"]`).value
+    options['race'] = e.target.querySelector(`[name="race"]`).value
+    e.target.querySelectorAll(`[data-type="stat"]`).forEach(node => options.stats[node.id] = node.innerText)
+    options['bio'] = e.target.querySelector(`[name="bio"]`).value
+    options['image_id'] = e.target.charImage.value
+    fetch(globals.userUrl()+localStorage.getItem('slug') + '/characters',{
+        method: 'POST',
+        headers: {
+            'auth-token': localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({options})
+    })
+    clearElement(globals.main())
+    renderHomePage()
 }
 
 const renderHomePage = () => {

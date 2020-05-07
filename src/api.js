@@ -21,6 +21,16 @@ const fetchSpecificCharacter = async (id) =>  {
     renderCharacterSpecs(data)
 }
 
+const fetchImgOpt = async () => {
+    let res = await fetch(globals.baseUrl() + 'images', {
+        headers: {
+            'auth-token': localStorage.getItem('token')
+        }
+    })
+    let data = await res.json()
+    return data
+}
+
 // User Endpoint calls
 
 const fetchUser = async () => {

@@ -1,4 +1,5 @@
 const renderCharacterCard = (char) => {
+
     let card = document.createElement('div')
     card.className = 'card'
     
@@ -9,7 +10,7 @@ const renderCharacterCard = (char) => {
     figure.className = 'image is-4by4'
 
     let img = document.createElement('img')
-    img.src = char.img
+    img.src = char.image
     
     figure.appendChild(img)
     cardImg.appendChild(figure)
@@ -62,7 +63,7 @@ const renderCharacterSpecs = (data) =>  {
     card.innerHTML  = ` <div class='card selected-card'>
                                 <div class='card-image'>
                                     <figure class='image is-2by2'>
-                                        <img src=${char.img}>
+                                        <img src=${char.image}>
                                     </figure>
                                 </div>
                                 <div class='media-content'>
@@ -100,21 +101,10 @@ const renderCharacterSpecs = (data) =>  {
                                         ${char.bio}
                                     </p>
                                 </div>
-                                <button id='date-button' class='button is-danger'> 
-                                    Date!
-                                </button>
+                                    ${renderCardSpecBtn(char.userId)}
                                 </div>
                                 </div>
                                 `
-
-
-    let race = document.createElement('p')
-    race.className = 'title is-5'
-    race.innerText = char.race
-
-    let  charClass  = document.createElement('p')
-    charClass.className = 'title is-5'
-    charClass.innerText =   char.characterClass
 
     modal.addEventListener('click',  (e)=>  closeModal(e))
 
@@ -122,6 +112,14 @@ const renderCharacterSpecs = (data) =>  {
     modalContent.appendChild(card)
     modal.appendChild(modalContent)
     globals.main().appendChild(modal)
+}
+
+const renderCardSpecBtn = (id) => {
+    if(id == localStorage.getItem('slug')){
+        return `<button id='char-select-button' class='button is-danger'>Select</button>`
+    }else{
+        return `<button id='date-button' class='button is-danger'>Date!</button>`
+    }
 }
 
 

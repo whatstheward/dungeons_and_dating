@@ -35,7 +35,10 @@
 
 .card{
     margin: 2vw;
-    min-width: 8em;
+    min-width: 20em;
+    width: 20em;
+    height: 20em;
+    min-height: 15em;
     box-shadow: -5px  5px 5px  grey;
     border-right: solid;
     border-right-color: grey;
@@ -44,6 +47,21 @@
     text-align: center;
     border-radius: 5%;
     padding: 1em;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card figure {
+    height: 75%;
+}
+
+.card figure img{
+    width: 15em;
+    height: 10em;
+    object-fit: cover;
+    object-position: top;
+    margin: 0 auto;
 }
 
 .centered{
@@ -51,17 +69,48 @@
 }
 
 .selected-card{
-    display: flex;
+    margin: 2vw;
+    min-width: 20em;
+    width: 20em;
+    height: fit-content !important;
+    min-height: 15em;
+    box-shadow: -5px  5px 5px  grey;
+    border-right: solid;
+    border-right-color: grey;
+    border-top: solid;
+    border-top-color: grey;
+    text-align: center;
+    border-radius: 5%;
+    padding: 1em;
+    display:flex;
+    flex-direction: column;
     justify-content: center;
-    box-sizing: border-box;
 }  
 
 .selected-card img{
-    /* width: 50% !important; */
+    width: 15em !important;
+    height: 10em !important;
+    object-fit: cover;
+    object-position: top;
+    margin: 0 auto;
 }
 
 #selected-card div {
-    margin: 1%;
+    margin: 0 auto;
+}
+
+#image-select{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.char-icon{
+    width: 7em;
+    height: 7em !important;
+    object-fit: cover;
+    object-position: top;
+    margin: 0 auto;
 }
 
 .button{
@@ -78,4 +127,8 @@
     width: max-content !important;
     margin: 0% 50% 0% 50%;
     overflow: visible;
+}
+
+#profile-header{
+    width: 100vw
 }

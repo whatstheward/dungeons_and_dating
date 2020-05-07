@@ -1,3 +1,4 @@
+
 const renderLoginForm = () => {
     const form = document.createElement('form')
     form.id = "form"
@@ -75,11 +76,11 @@ const renderSignUpForm = () => {
     globals.main().appendChild(form)
 }
 
-const renderCreateCharForm = () =>  {
-
+const renderCreateCharForm = async () =>  {
+    const charImages = await fetchImgOpt()
     const charClasses = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Sorcerer", "Wizard"]
     const charRace = ["Asimaar", "Dragonborn", "Dwarf", "Elf", "Half-Orc", "Gnome", "Half-Elf", "Halfling", "Human", "Tiefling"]
-    const stats  = {str: 0,  dex: 0, con: 0, int: 0, wis: 0, cha: 0}
+    const stats  = {strength: 0,  dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0}
     const form = document.createElement('form')
     form.id = 'form'
     // Name Input
@@ -165,9 +166,30 @@ const renderCreateCharForm = () =>  {
     bio.innerHTML = `
         <div class='control'>
             <label class='label'>Bio:</label>
-            <textarea  name='bio' class='textarea' placeholder='Character Bio' rows='10'></textarea>
+            <textarea  name='bio' class='textarea' placeholder='Character Bio' rows='5'></textarea>
         </div>
     `
+
+    // Image Selection
+    const imageControl = document.createElement('div')
+    imageControl.className = 'control'
+    imageControl.id = 'image-select'
+
+    charImages.forEach(imgObj => {
+        const label = document.createElement('label')
+        label.className = 'radio'
+        const radio = document.createElement('input')
+        radio.type = 'radio'
+        radio.name = 'charImage'
+        radio.value = imgObj.id
+        const img = document.createElement('img')
+        img.src = imgObj.url
+        img.className = 'char-icon'
+
+        label.appendChild(radio)
+        label.appendChild(img)
+        imageControl.appendChild(label)
+    })
 
     const submitBtn = document.createElement('input')
     submitBtn.type = 'submit'
@@ -181,6 +203,7 @@ const renderCreateCharForm = () =>  {
     form.appendChild(statTable)
     form.appendChild(statButton)
     form.appendChild(bio)
+    form.appendChild(imageControl)
     form.appendChild(submitBtn)
     form.addEventListener('submit',  (e) => handleCreateCharacter(e))
 
